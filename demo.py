@@ -10,6 +10,9 @@
 Demo script showing detections in sample images.
 
 See README.md for installation instructions before running.
+
+Some additions by Dominic Waithe 2017.
+Manually allow use using additional classes.
 """
 from __future__ import absolute_import
 from __future__ import division
