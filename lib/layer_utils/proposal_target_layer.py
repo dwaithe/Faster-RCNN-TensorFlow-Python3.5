@@ -134,7 +134,7 @@ def _sample_rois(all_rois, all_scores, gt_boxes, fg_rois_per_image, rois_per_ima
     else:
         #import pdb
         #pdb.set_trace()
-        print "both sizes are zero."
+        print ("both sizes are zero.")
         pass
 
     # The indices that we're selecting (both fg and bg)
