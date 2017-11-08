@@ -6,7 +6,7 @@ This is the branch to compile Faster R-CNN on Windows. It is heavily inspired by
 
 # How To Use This Branch
 1- Install tensorflow, preferably GPU version. Follow [instructions for Windows]( https://www.tensorflow.org/install/install_windows). If you do not install GPU version, you need to comment out all the GPU calls inside code and replace them with relavent CPU ones.
-
+or
 1- Install tensorflow, preferably GPU version. Follow [instructions for mac ](https://www.tensorflow.org/install/install_mac). 
 
 2- Install python packages (cython, python-opencv, easydict)
