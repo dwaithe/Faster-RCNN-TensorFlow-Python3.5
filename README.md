@@ -13,7 +13,7 @@ or
 
 or 
 
-1-  Install tensorflow, preferably GPU version. Follow [instructions for linux ] https://www.tensorflow.org/install/install_linux
+1-  Install tensorflow, preferably GPU version. Follow [instructions for linux ](https://www.tensorflow.org/install/install_linux).
 
 (I installed using pip on each system: pip3 install --upgrade tensorflow-gpu )
 
