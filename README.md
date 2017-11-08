@@ -1,5 +1,5 @@
 # tf-faster-rcnn
-Tensorflow Faster R-CNN for Windows, osX and linux by using Python 3.5 
+Tensorflow Faster R-CNN for Windows, mac OS X and linux by using Python 3.5 
 
 This is the branch to compile Faster R-CNN on Windows. It is heavily inspired by the great work done [here](https://github.com/smallcorgi/Faster-RCNN_TF) and [here](https://github.com/rbgirshick/py-faster-rcnn). I have not implemented anything new but I fixed the implementations for Windows and Python 3.5.
 
