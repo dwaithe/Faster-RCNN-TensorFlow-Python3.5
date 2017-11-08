@@ -1,11 +1,12 @@
 # tf-faster-rcnn
-Tensorflow Faster R-CNN for Windows by using Python 3.5 
+Tensorflow Faster R-CNN for Windows, osX  by using Python 3.5 
 
 This is the branch to compile Faster R-CNN on Windows. It is heavily inspired by the great work done [here](https://github.com/smallcorgi/Faster-RCNN_TF) and [here](https://github.com/rbgirshick/py-faster-rcnn). I have not implemented anything new but I fixed the implementations for Windows and Python 3.5.
 
 
 # How To Use This Branch
-1- Install tensorflow, preferably GPU version. Follow [instructions]( https://www.tensorflow.org/install/install_windows). If you do not install GPU version, you need to comment out all the GPU calls inside code and replace them with relavent CPU ones.
+1- Install tensorflow, preferably GPU version. Follow [instructions for Windows]( https://www.tensorflow.org/install/install_windows). If you do not install GPU version, you need to comment out all the GPU calls inside code and replace them with relavent CPU ones.
+1- Install tensorflow, preferably GPU version. Follow [instructions for mac ](https://www.tensorflow.org/install/install_mac). 
 
 2- Install python packages (cython, python-opencv, easydict)
 
