@@ -20,10 +20,10 @@ import os
 
 def get_training_roidb(imdb):
     """Returns a roidb (Region of Interest database) for use in training."""
-    if True:
-        print('Appending horizontally-flipped training examples...')
-        imdb.append_flipped_images()
-        print('done')
+    #if True:
+    #    print('Appending horizontally-flipped training examples...')
+    #    imdb.append_flipped_images()
+    #    print('done')
 
     print('Preparing training data...')
     rdl_roidb.prepare_roidb(imdb)
