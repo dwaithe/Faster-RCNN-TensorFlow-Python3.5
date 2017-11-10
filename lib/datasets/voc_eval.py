@@ -100,34 +100,36 @@ def voc_eval(detpath,
     # assumes imagesetfile is a text file with each line an image name
     # cachedir caches the annotations in a pickle file
 
+
+    #Am disapplying the cache as I will be using fresh classes frequently.
     # first load gt
-    if not os.path.isdir(cachedir):
-        os.mkdir(cachedir)
-    cachefile = os.path.join(cachedir, 'annots.pkl')
+    #if not os.path.isdir(cachedir):
+    #    os.mkdir(cachedir)
+    #cachefile = os.path.join(cachedir, 'annots.pkl')
     # read list of images
     with open(imagesetfile, 'r') as f:
         lines = f.readlines()
     imagenames = [x.strip() for x in lines]
 
-    if not os.path.isfile(cachefile):
-        # load annots
-        recs = {}
-        for i, imagename in enumerate(imagenames):
-            recs[imagename] = parse_rec(annopath.format(imagename))
-            if i % 100 == 0:
-                print('Reading annotation for {:d}/{:d}'.format(
-                    i + 1, len(imagenames)))
-        # save
-        print('Saving cached annotations to {:s}'.format(cachefile))
-        with open(cachefile, 'wb') as f:
-            pickle.dump(recs, f)
-    else:
+    #if not os.path.isfile(cachefile):
+    # load annots
+    recs = {}
+    for i, imagename in enumerate(imagenames):
+        recs[imagename] = parse_rec(annopath.format(imagename))
+        if i % 100 == 0:
+            print('Reading annotation for {:d}/{:d}'.format(
+                i + 1, len(imagenames)))
+    # save
+    print('Saving cached annotations to {:s}'.format(cachefile))
+    with open(cachefile, 'wb') as f:
+        pickle.dump(recs, f)
+    #else:
         # load
-        with open(cachefile, 'rb') as f:
-            try:
-                recs = pickle.load(f)
-            except:
-                recs = pickle.load(f, encoding='bytes')
+    #    with open(cachefile, 'rb') as f:
+    #        try:
+    #            recs = pickle.load(f)
+    #        except:
+    #            recs = pickle.load(f, encoding='bytes')
 
     # extract gt objects for this class
     class_recs = {}

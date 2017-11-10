@@ -24,25 +24,26 @@ from .voc_eval import voc_eval
 
 class pascal_voc(imdb):
     def __init__(self, image_set, year, devkit_path=None):
+
         imdb.__init__(self, 'voc_' + year + '_' + image_set)
         self._year = year
         self._image_set = image_set
+        self.file_location ={}
         self._devkit_path = self._get_default_path() if devkit_path is None \
             else devkit_path
         self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
-        self._classes = ('__background__',  # always index 0
-                         'aeroplane', 'bicycle', 'bird', 'boat',
-                         'bottle', 'bus', 'car', 'cat', 'chair',
-                         'cow', 'diningtable', 'dog', 'horse',
-                         'motorbike', 'person', 'pottedplant',
-                         'sheep', 'sofa', 'train', 'tvmonitor')
+        self._data_path_extras = cfg.FLAGS2["data_path_extras_CLASSES"]
+        self._classes = cfg.FLAGS2["CLASSES"]
         self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
         self._image_ext = '.jpg'
         self._image_index = self._load_image_set_index()
+
+        print('Classes to be trained',cfg.FLAGS2["CLASSES"])
         # Default to roidb handler
         self._roidb_handler = self.gt_roidb
         self._salt = str(uuid.uuid4())
         self._comp_id = 'comp4'
+
 
         # PASCAL specific config options
         self.config = {'cleanup': True,
@@ -66,8 +67,9 @@ class pascal_voc(imdb):
         """
         Construct an image path from the image's "index" identifier.
         """
-        image_path = os.path.join(self._data_path, 'JPEGImages',
+        image_path = os.path.join(self.file_location[index], 'JPEGImages',
                                   index + self._image_ext)
+
         assert os.path.exists(image_path), \
             'Path does not exist: {}'.format(image_path)
         return image_path
@@ -80,10 +82,31 @@ class pascal_voc(imdb):
         # self._devkit_path + /VOCdevkit2007/VOC2007/ImageSets/Main/val.txt
         image_set_file = os.path.join(self._data_path, 'ImageSets', 'Main',
                                       self._image_set + '.txt')
+
+
+        if cfg.FLAGS2["extra_CLASSES"] == True:
+            # self._devkit_path + /VOCdevkit2007/VOC2007/ImageSets/Main/val.txt
+            image_set_file_extras = os.path.join(self._data_path_extras, 'ImageSets',
+                                          self._image_set + '.txt')
+
         assert os.path.exists(image_set_file), \
             'Path does not exist: {}'.format(image_set_file)
         with open(image_set_file) as f:
             image_index = [x.strip() for x in f.readlines()]
+
+        for indx in image_index:
+            self.file_location[indx] = self._data_path
+
+        if cfg.FLAGS2["extra_CLASSES"] == True:
+            with open(image_set_file_extras) as f:
+                self.image_index_extra = [x.strip() for x in f.readlines()]
+            print ('adding additional images to')
+            
+            for indx in self.image_index_extra:
+                self.file_location[indx] = self._data_path_extras
+            image_index.extend(self.image_index_extra)
+
+        
         return image_index
 
     def _get_default_path(self):
@@ -98,21 +121,33 @@ class pascal_voc(imdb):
 
         This function loads/saves from/to a cache file to speed up future calls.
         """
-        cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
-        if os.path.exists(cache_file):
-            with open(cache_file, 'rb') as fid:
-                try:
-                    roidb = pickle.load(fid)
-                except:
-                    roidb = pickle.load(fid, encoding='bytes')
-            print('{} gt roidb loaded from {}'.format(self.name, cache_file))
-            return roidb
 
-        gt_roidb = [self._load_pascal_annotation(index)
-                    for index in self.image_index]
-        with open(cache_file, 'wb') as fid:
-            pickle.dump(gt_roidb, fid, pickle.HIGHEST_PROTOCOL)
-        print('wrote gt roidb to {}'.format(cache_file))
+        #Am disapling the cache as will constantly change number of classes.
+        cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
+        print('Not loading cache at this time. Goto pascal_voc.py to change lines 99-106.')
+        #if os.path.exists(cache_file):
+        #    with open(cache_file, 'rb') as fid:
+        #        try:
+        #            roidb = pickle.load(fid)
+        #        except:
+        #            roidb = pickle.load(fid, encoding='bytes')
+        #    print('{} gt roidb loaded from {}'.format(self.name, cache_file))
+        #    return roidb
+
+        gt_roidb = [self._load_pascal_annotation(self._data_path, index) for index in self.image_index]
+
+        if cfg.FLAGS2["extra_CLASSES"] == True:
+            print('adding additional classes')
+
+            gt_roidb_extra = [self._load_pascal_annotation(self._data_path_extras, index) for index in self.image_index_extra]
+
+            gt_roidb.extend(gt_roidb_extra)
+
+
+        #with open(cache_file, 'wb') as fid:
+        #    pickle.dump(gt_roidb, fid, pickle.HIGHEST_PROTOCOL)
+        print('Not writing  cache at this time. Goto pascal_voc.py to change lines 109-110.')
+        #print('wrote gt roidb to {}'.format(cache_file))
 
         return gt_roidb
 
@@ -135,12 +170,12 @@ class pascal_voc(imdb):
             box_list = pickle.load(f)
         return self.create_roidb_from_box_list(box_list, gt_roidb)
 
-    def _load_pascal_annotation(self, index):
+    def _load_pascal_annotation(self, data_path,index):
         """
         Load image and bounding boxes info from XML file in the PASCAL VOC
         format.
         """
-        filename = os.path.join(self._data_path, 'Annotations', index + '.xml')
+        filename = os.path.join(self.file_location[index], 'Annotations', index + '.xml')
         tree = ET.parse(filename)
         objs = tree.findall('object')
         if not self.config['use_diff']:

@@ -103,6 +103,22 @@ tf.app.flags.DEFINE_integer('roi_pooling_size', 7, "Size of the pooled region af
 FLAGS2["root_dir"] = osp.abspath(osp.join(osp.dirname(__file__), '..', '..'))
 FLAGS2["data_dir"] = osp.abspath(osp.join(FLAGS2["root_dir"], 'data'))
 
+#####################
+#Class parameters   #
+#####################
+FLAGS2["CLASSES"] = ('__background__',
+           'aeroplane', 'bicycle', 'bird', 'boat',
+           'bottle', 'bus', 'car', 'cat', 'chair',
+           'cow', 'diningtable', 'dog', 'horse',
+           'motorbike', 'person', 'pottedplant',
+           'sheep', 'sofa', 'train', 'tvmonitor','cell')
+
+#Additional classes
+
+FLAGS2["extra_CLASSES"] = True
+FLAGS2["data_path_extras_CLASSES"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'cell_class'))
+
+
 
 def get_output_dir(imdb, weights_filename):
     """Return the directory where experimental artifacts are placed.
