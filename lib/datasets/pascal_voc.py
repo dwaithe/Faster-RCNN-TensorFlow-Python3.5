@@ -32,8 +32,11 @@ class pascal_voc(imdb):
         self._devkit_path = self._get_default_path() if devkit_path is None \
             else devkit_path
         self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
-        self._data_path_extras = cfg.FLAGS2["data_path_extras_CLASSES"]
+        
+
         self._classes = cfg.FLAGS2["CLASSES"]
+        if self._classes == True:
+            self._data_path_extras = cfg.FLAGS2["data_path_extras_CLASSES"]
         self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
         self._image_ext = '.jpg'
         self._image_index = self._load_image_set_index()
@@ -170,7 +173,7 @@ class pascal_voc(imdb):
             box_list = pickle.load(f)
         return self.create_roidb_from_box_list(box_list, gt_roidb)
 
-    def _load_pascal_annotation(self, data_path,index):
+    def _load_pascal_annotation(self,index):
         """
         Load image and bounding boxes info from XML file in the PASCAL VOC
         format.
