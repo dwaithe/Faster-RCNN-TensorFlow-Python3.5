@@ -115,7 +115,7 @@ FLAGS2["CLASSES"] = ['__background__',
 
 #Additional classes
 
-FLAGS2["extra_CLASSES"] = False
+FLAGS2["extra_CLASSES"] = True
 if FLAGS2["extra_CLASSES"] == True:
     FLAGS2["CLASSES"].append('cell')
 

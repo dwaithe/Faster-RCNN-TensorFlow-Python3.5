@@ -35,7 +35,7 @@ class pascal_voc(imdb):
         
 
         self._classes = cfg.FLAGS2["CLASSES"]
-        if self._classes == True:
+        if cfg.FLAGS2["extra_CLASSES"] == True:
             self._data_path_extras = cfg.FLAGS2["data_path_extras_CLASSES"]
         self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
         self._image_ext = '.jpg'
@@ -137,14 +137,14 @@ class pascal_voc(imdb):
         #    print('{} gt roidb loaded from {}'.format(self.name, cache_file))
         #    return roidb
 
-        gt_roidb = [self._load_pascal_annotation( index) for index in self.image_index]
+        gt_roidb = [self._load_pascal_annotation( index) for index in self._image_index]
 
-        if cfg.FLAGS2["extra_CLASSES"] == True:
-            print('adding additional classes')
+        #if cfg.FLAGS2["extra_CLASSES"] == True:
+        #    print('adding additional classes')
 
-            gt_roidb_extra = [self._load_pascal_annotation(self._data_path_extras, index) for index in self.image_index_extra]
+        #    gt_roidb_extra = [self._load_pascal_annotation(self._data_path_extras, index) for index in self.image_index_extra]
 
-            gt_roidb.extend(gt_roidb_extra)
+        #    gt_roidb.extend(gt_roidb_extra)
 
 
         #with open(cache_file, 'wb') as fid:
