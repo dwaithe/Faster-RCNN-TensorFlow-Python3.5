@@ -137,7 +137,7 @@ class pascal_voc(imdb):
         #    print('{} gt roidb loaded from {}'.format(self.name, cache_file))
         #    return roidb
 
-        gt_roidb = [self._load_pascal_annotation(self._data_path, index) for index in self.image_index]
+        gt_roidb = [self._load_pascal_annotation( index) for index in self.image_index]
 
         if cfg.FLAGS2["extra_CLASSES"] == True:
             print('adding additional classes')
