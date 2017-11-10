@@ -22,14 +22,13 @@ from lib.datasets.imdb import imdb
 from .voc_eval import voc_eval
 
 
-class pascal_voc(imdb):
+class custom_classes(imdb):
     def __init__(self, image_set, year, devkit_path=None):
-        imdb.__init__(self, 'voc_' + year + '_' + image_set)
+        imdb.__init__(self, 'test_class')
         self._year = year
         self._image_set = image_set
-        self._devkit_path = self._get_default_path() if devkit_path is None \
-            else devkit_path
-        self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
+        self._devkit_path = cfg.FLAGS2["data_path_extras_CLASSES"]
+        self._data_path = cfg.FLAGS2["data_path_extras_CLASSES"]
         self._classes = cfg.FLAGS2["CLASSES"]
         self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
         self._image_ext = '.jpg'

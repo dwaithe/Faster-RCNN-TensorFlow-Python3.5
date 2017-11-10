@@ -13,6 +13,7 @@ from __future__ import print_function
 __sets = {}
 from lib.datasets.pascal_voc import pascal_voc
 from lib.datasets.coco import coco
+from lib.datasets.custom_classes import custom_classes
 
 import numpy as np
 
@@ -33,6 +34,12 @@ for year in ['2015']:
   for split in ['test', 'test-dev']:
     name = 'coco_{}_{}'.format(year, split)
     __sets[name] = (lambda split=split, year=year: coco(split, year))
+
+# Set up dominic 2017
+#for year in ['2015']:
+ # for split in ['test', 'test-dev']:
+    #name = 'coco_{}_{}'.format(year, split)
+__sets['test'] = (lambda split='trainval', year='2007': custom_classes('trainval', '2007'))
 
 
 def get_imdb(name):

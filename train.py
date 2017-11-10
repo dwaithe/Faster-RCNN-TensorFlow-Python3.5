@@ -20,10 +20,10 @@ import os
 
 def get_training_roidb(imdb):
     """Returns a roidb (Region of Interest database) for use in training."""
-    #if True:
-    #    print('Appending horizontally-flipped training examples...')
-    #    imdb.append_flipped_images()
-    #    print('done')
+    if True:
+        print('Appending horizontally-flipped training examples...')
+        imdb.append_flipped_images()
+        print('done')
 
     print('Preparing training data...')
     rdl_roidb.prepare_roidb(imdb)
@@ -44,10 +44,12 @@ def combined_roidb(imdb_names):
         print('Set proposal method: {:s}'.format("gt"))
         roidb = get_training_roidb(imdb)
         return roidb
+    
 
     roidbs = [get_roidb(s) for s in imdb_names.split('+')]
     roidb = roidbs[0]
     if len(roidbs) > 1:
+
         for r in roidbs[1:]:
             roidb.extend(r)
         tmp = get_imdb(imdb_names.split('+')[1])
@@ -66,7 +68,9 @@ class Train:
         else:
             raise NotImplementedError
 
-        self.imdb, self.roidb = combined_roidb("voc_2007_trainval")
+        self.imdb, self.roidb = combined_roidb("voc_2007_trainval+test")
+
+        print('self.imdb',self.imdb)
 
         self.data_layer = RoIDataLayer(self.roidb, self.imdb.num_classes)
         self.output_dir = cfg.get_output_dir(self.imdb, 'default')
