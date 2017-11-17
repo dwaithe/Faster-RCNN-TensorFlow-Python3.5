@@ -70,7 +70,7 @@ class Train:
 
         self.imdb, self.roidb = combined_roidb("voc_2007_trainval+test")
 
-        print('self.imdb',self.imdb)
+        
 
         self.data_layer = RoIDataLayer(self.roidb, self.imdb.num_classes)
         self.output_dir = cfg.get_output_dir(self.imdb, 'default')

@@ -34,8 +34,8 @@ from lib.utils.timer import Timer
 
 
 
-NETS = {'vgg16': ('vgg16_faster_rcnn_iter_5000.ckpt',), 'res101': ('res101_faster_rcnn_iter_110000.ckpt',)}
-DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',)}
+NETS = {'vgg16': ('vgg16_faster_rcnn_iter_5000.ckpt',), 'res101': ('res101_faster_rcnn_iter_110000.ckpt',),'voc_2007_trainval+test': ('vgg16_faster_rcnn_iter_40000.ckpt',)}
+DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_trainval+test',)}
 
 
 def vis_detections(im, class_name, dets, thresh=0.5):
@@ -131,21 +131,54 @@ if __name__ == '__main__':
     # init session
     sess = tf.Session(config=tfconfig)
     # load network
-    if demonet == 'vgg16':
+    if demonet == 'vgg16' or 'voc_2007_trainval+test':
         net = vgg16(batch_size=1)
     # elif demonet == 'res101':
         # net = resnetv1(batch_size=1, num_layers=101)
     else:
         raise NotImplementedError
-    net.create_architecture(sess, "TEST", 21,
+    net.create_architecture(sess, "TEST", cfg.FLAGS2["CLASSES"].__len__(),
                             tag='default', anchor_scales=[8, 16, 32])
     saver = tf.train.Saver()
     saver.restore(sess, tfmodel)
 
     print('Loaded network {:s}'.format(tfmodel))
 
-    im_names = ['000456.jpg', '000457.jpg', '000542.jpg', '001150.jpg',
-                '001763.jpg', '004545.jpg']
+    im_names = ['010037.jpg','010038.jpg','010039.jpg','010040.jpg','010041.jpg','010057.jpg','010058.jpg','010117.jpg','010118.jpg','010119.jpg','010180.jpg','010181.jpg','010182.jpg']
+    im_names.append('010158.jpg')
+    im_names.append('010159.jpg')
+    im_names.append('010160.jpg')
+    im_names.append('010161.jpg')
+    im_names.append('010162.jpg')
+    im_names.append('010163.jpg')
+    im_names.append('010164.jpg')
+    im_names.append('010165.jpg')
+    im_names.append('010166.jpg')
+    im_names.append('010167.jpg')
+    im_names.append('010168.jpg')
+    im_names.append('010169.jpg')
+    im_names.append('010170.jpg')
+    im_names.append('010171.jpg')
+    im_names.append('010172.jpg')
+    im_names.append('010173.jpg')
+    im_names.append('010174.jpg')
+    im_names.append('010175.jpg')
+    im_names.append('010176.jpg')
+    im_names.append('010177.jpg')
+    im_names.append('010178.jpg')
+    im_names.append('010179.jpg')
+    im_names.append('010180.jpg')
+    im_names.append('010181.jpg')
+    im_names.append('010182.jpg')
+    im_names.append('010183.jpg')
+    im_names.append('010184.jpg')
+    im_names.append('010185.jpg')
+    im_names.append('010186.jpg')
+    im_names.append('010187.jpg')
+    im_names.append('010188.jpg')
+    im_names.append('010189.jpg')
+    im_names.append('010190.jpg')
+
     for im_name in im_names:
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
         print('Demo for data/demo/{}'.format(im_name))

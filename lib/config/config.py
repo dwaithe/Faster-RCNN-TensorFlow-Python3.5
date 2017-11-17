@@ -118,6 +118,9 @@ FLAGS2["CLASSES"] = ['__background__',
 FLAGS2["extra_CLASSES"] = True
 if FLAGS2["extra_CLASSES"] == True:
     FLAGS2["CLASSES"].append('cell')
+    FLAGS2["CLASSES"].append('cell - peroxisome')
+    FLAGS2["CLASSES"].append('cell - nucleosome')
+    FLAGS2["CLASSES"].append('cell - c127')
 
     FLAGS2["data_path_extras_CLASSES"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'cell_class'))
 
