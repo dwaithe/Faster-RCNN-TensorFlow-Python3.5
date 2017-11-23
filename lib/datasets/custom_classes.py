@@ -23,12 +23,12 @@ from .voc_eval import voc_eval
 
 
 class custom_classes(imdb):
-    def __init__(self, image_set, year, devkit_path=None):
+    def __init__(self, image_set, year, directory,devkit_path=None):
         imdb.__init__(self, 'test_class')
         self._year = year
         self._image_set = image_set
-        self._devkit_path = cfg.FLAGS2["data_path_extras_CLASSES"]
-        self._data_path = cfg.FLAGS2["data_path_extras_CLASSES"]
+        self._devkit_path = cfg.FLAGS2[directory]
+        self._data_path = cfg.FLAGS2[directory]
         self._classes = cfg.FLAGS2["CLASSES"]
         self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
         self._image_ext = '.jpg'

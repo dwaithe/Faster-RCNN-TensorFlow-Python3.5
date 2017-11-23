@@ -39,7 +39,8 @@ for year in ['2015']:
 #for year in ['2015']:
  # for split in ['test', 'test-dev']:
     #name = 'coco_{}_{}'.format(year, split)
-__sets['test'] = (lambda split='trainval', year='2007': custom_classes('trainval', '2007'))
+__sets['test'] = (lambda split='trainval', year='2007': custom_classes('trainval', '2017','data_path_extras_test'))
+__sets['Isabel'] = (lambda split='trainval', year='2007': custom_classes('trainval', '2017','data_path_extras_Isabella'))
 
 
 def get_imdb(name):
