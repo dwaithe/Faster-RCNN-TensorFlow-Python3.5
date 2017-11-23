@@ -68,8 +68,8 @@ class Train:
 		else:
 			raise NotImplementedError
 
-		#self.imdb, self.roidb = combined_roidb("voc_2007_trainval+test+Isabel")
-		self.imdb, self.roidb = combined_roidb("Isabel")
+		self.imdb, self.roidb = combined_roidb("voc_2007_trainval+test+Isabel")
+		#self.imdb, self.roidb = combined_roidb("Isabel")
 
 		
 
