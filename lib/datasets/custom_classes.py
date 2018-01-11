@@ -92,21 +92,22 @@ class custom_classes(imdb):
 
         This function loads/saves from/to a cache file to speed up future calls.
         """
-        cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
-        if os.path.exists(cache_file):
-            with open(cache_file, 'rb') as fid:
-                try:
-                    roidb = pickle.load(fid)
-                except:
-                    roidb = pickle.load(fid, encoding='bytes')
-            print('{} gt roidb loaded from {}'.format(self.name, cache_file))
-            return roidb
+        #cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
+        #if os.path.exists(cache_file):
+        #    with open(cache_file, 'rb') as fid:
+        #        try:
+        #            roidb = pickle.load(fid)
+        #        except:
+        #            roidb = pickle.load(fid, encoding='bytes')
+        #    print('{} gt roidb loaded from {}'.format(self.name, cache_file))
+        #    return roidb
 
         gt_roidb = [self._load_pascal_annotation(index)
                     for index in self.image_index]
-        with open(cache_file, 'wb') as fid:
-            pickle.dump(gt_roidb, fid, pickle.HIGHEST_PROTOCOL)
-        print('wrote gt roidb to {}'.format(cache_file))
+        #with open(cache_file, 'wb') as fid:
+        #    pickle.dump(gt_roidb, fid, pickle.HIGHEST_PROTOCOL)
+        #print('wrote gt roidb to {}'.format(cache_file))
+        print('Not saving or loading cache of annotations. custom_classes')
 
         return gt_roidb
 
@@ -182,11 +183,11 @@ class custom_classes(imdb):
 
     def _get_voc_results_file_template(self):
         # VOCdevkit/results/VOC2007/Main/<comp_id>_det_test_aeroplane.txt
-        filename = self._get_comp_id() + '_det_' + self._image_set + '_{:s}.txt'
+        #filename = self._get_comp_id() + '_det_' + self._image_set + '_{:s}.txt'
+        filename = '_det_' + self._image_set + '_{:s}.txt'
         path = os.path.join(
             self._devkit_path,
             'results',
-            'VOC' + self._year,
             'Main',
             filename)
         return path
@@ -196,7 +197,9 @@ class custom_classes(imdb):
             if cls == '__background__':
                 continue
             print('Writing {} VOC results file'.format(cls))
+
             filename = self._get_voc_results_file_template().format(cls)
+            print(filename)
             with open(filename, 'wt') as f:
                 for im_ind, index in enumerate(self.image_index):
                     dets = all_boxes[cls_ind][im_ind]
@@ -208,12 +211,15 @@ class custom_classes(imdb):
                                 format(index, dets[k, -1],
                                        dets[k, 0] + 1, dets[k, 1] + 1,
                                        dets[k, 2] + 1, dets[k, 3] + 1))
+                        print ('{:s} {:.3f} {:.1f} {:.1f} {:.1f} {:.1f}\n'.
+                                format(index, dets[k, -1],
+                                       dets[k, 0] + 1, dets[k, 1] + 1,
+                                       dets[k, 2] + 1, dets[k, 3] + 1))
 
     def _do_python_eval(self, output_dir='output'):
-        annopath = self._devkit_path + '\\VOC' + self._year + '\\Annotations\\' + '{:s}.xml'
+        annopath = self._devkit_path + '/Annotations/' + '{:s}.xml'
         imagesetfile = os.path.join(
             self._devkit_path,
-            'VOC' + self._year,
             'ImageSets',
             'Main',
             self._image_set + '.txt')
@@ -275,7 +281,7 @@ class custom_classes(imdb):
                 if cls == '__background__':
                     continue
                 filename = self._get_voc_results_file_template().format(cls)
-                os.remove(filename)
+                #os.remove(filename)
 
     def competition_mode(self, on):
         if on:

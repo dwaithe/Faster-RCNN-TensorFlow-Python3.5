@@ -101,11 +101,11 @@ def voc_eval(detpath,
     # cachedir caches the annotations in a pickle file
 
 
-    #Am disapplying the cache as I will be using fresh classes frequently.
-    # first load gt
-    #if not os.path.isdir(cachedir):
-    #    os.mkdir(cachedir)
-    #cachefile = os.path.join(cachedir, 'annots.pkl')
+    
+    #first load gt
+    if not os.path.isdir(cachedir):
+        os.mkdir(cachedir)
+    cachefile = os.path.join(cachedir, 'annots.pkl')
     # read list of images
     with open(imagesetfile, 'r') as f:
         lines = f.readlines()

@@ -39,9 +39,16 @@ for year in ['2015']:
 #for year in ['2015']:
  # for split in ['test', 'test-dev']:
     #name = 'coco_{}_{}'.format(year, split)
-__sets['test'] = (lambda split='trainval', year='2007': custom_classes('trainval', '2017','data_path_extras_test','test_class'))
-__sets['Isabel'] = (lambda split='trainval', year='2007': custom_classes('trainval', '2017','data_path_extras_Isabella','Isabel_class'))
+for split in ['val', 'trainval']:
+  name = 'test_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_test','test_class'))
+  name = 'Isabel_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_Isabella','Isabel_class'))
 
+for year in ['2007', '2012']:
+  for split in ['trainval_25','trainval_50','trainval_75']:
+    name = 'voc_{}_{}'.format(year, split)
+    __sets[name] = (lambda split=split, year=year: pascal_voc(split, year))
 
 def get_imdb(name):
   """Get an imdb (image database) by name."""

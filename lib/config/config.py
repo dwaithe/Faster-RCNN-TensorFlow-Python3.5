@@ -102,6 +102,7 @@ tf.app.flags.DEFINE_integer('roi_pooling_size', 7, "Size of the pooled region af
 ######################
 FLAGS2["root_dir"] = osp.abspath(osp.join(osp.dirname(__file__), '..', '..'))
 FLAGS2["data_dir"] = osp.abspath(osp.join(FLAGS2["root_dir"], 'data'))
+FLAGS2["save_dir"] = "/scratch/dwaithe/models/"
 
 #####################
 #Class parameters   #
@@ -121,7 +122,7 @@ if FLAGS2["extra_CLASSES"] == True:
     FLAGS2["CLASSES"].append('cell - peroxisome')
     FLAGS2["CLASSES"].append('cell - nucleosome')
     FLAGS2["CLASSES"].append('cell - c127')
-    FLAGS2["CLASSES"].append('cell - isabel')
+    FLAGS2["CLASSES"].append('cell - Isabel')
 
     FLAGS2["data_path_extras_test"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'cell_class'))
     FLAGS2["data_path_extras_Isabella"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'Isabella_class'))
@@ -135,7 +136,7 @@ def get_output_dir(imdb, weights_filename):
     A canonical path is built using the name from an imdb and a network
     (if not None).
     """
-    outdir = osp.abspath(osp.join(FLAGS2["root_dir"], FLAGS2["root_dir"] , 'default', imdb.name))
+    outdir = osp.abspath(osp.join(FLAGS2["save_dir"], FLAGS2["save_dir"] , 'default', imdb.name))
     if weights_filename is None:
         weights_filename = 'default'
     outdir = osp.join(outdir, weights_filename)
