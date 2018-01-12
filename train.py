@@ -11,7 +11,7 @@ from lib.datasets.imdb import imdb as imdb2
 from lib.layer_utils.roi_data_layer import RoIDataLayer
 from lib.nets.vgg16 import vgg16
 from lib.utils.timer import Timer
-
+import sys
 try:
   import cPickle as pickle
 except ImportError:
@@ -60,7 +60,7 @@ def combined_roidb(imdb_names):
 
 
 class Train:
-	def __init__(self):
+	def __init__(self,dataset):
 
 		# Create network
 		if cfg.FLAGS.network == 'vgg16':
@@ -71,7 +71,8 @@ class Train:
 		#The database 
 		#self.imdb, self.roidb = combined_roidb("voc_2007_trainval+test+Isabel")
 
-		self.imdb, self.roidb = combined_roidb("voc_2007_trainval_25")
+
+		self.imdb, self.roidb = combined_roidb(dataset)
 		#self.imdb, self.roidb = combined_roidb("Isabel")
 
 		
@@ -240,5 +241,5 @@ class Train:
 
 
 if __name__ == '__main__':
-	train = Train()
+	train = Train(*sys.argv[1:])
 	train.train()
