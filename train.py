@@ -3,7 +3,7 @@ import time
 import numpy as np
 import tensorflow as tf
 from tensorflow.python import pywrap_tensorflow
-
+import os
 import lib.config.config as cfg
 from lib.datasets import roidb as rdl_roidb
 from lib.datasets.factory import get_imdb
@@ -241,5 +241,7 @@ class Train:
 
 
 if __name__ == '__main__':
-	train = Train(*sys.argv[1:])
+	
+	os.environ["CUDA_VISIBLE_DEVICES"] = sys.argv[1]
+	train = Train(sys.argv[2])
 	train.train()
