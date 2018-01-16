@@ -26,7 +26,7 @@ import tensorflow as tf
 
 
 NETS = {'vgg16': ('vgg16_faster_rcnn_iter_5000.ckpt',), 'res101': ('res101_faster_rcnn_iter_110000.ckpt',),'voc_2007_trainval+test': ('vgg16_faster_rcnn_iter_40000.ckpt',),'voc_2007_trainval+test+Isabel':('vgg16_faster_rcnn_iter_40000.ckpt',)}
-NETS['voc_2007_trainval_25':('vgg16_faster_rcnn_iter_40000.ckpt',)]
+NETS['voc_2007_trainval_25'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_test+test_test',)}
 
 def combined_roidb(imdb_names):
