@@ -75,7 +75,7 @@ if __name__ == '__main__':
         raise IOError(('{:s} not found.\nDid you download the proper networks from '
                        'our server and place them properly?').format(tfmodel + '.meta'))
 
-    imdb = combined_roidb(dataset)
+    imdb = combined_roidb(DATASETS[dataset][0])
 
 
     tfconfig = tf.ConfigProto(allow_soft_placement=True)
