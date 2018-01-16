@@ -68,14 +68,14 @@ if __name__ == '__main__':
     # model path
     demonet = args.demo_net
     dataset = args.dataset
-    tfmodel = os.path.join('output', demonet, DATASETS[dataset][0], 'default', NETS[demonet][0])
+    tfmodel = os.path.join('scratch','dwaithe','models' , 'default', NETS[demonet][0])
     print('tfmodel',tfmodel)
     if not os.path.isfile(tfmodel + '.meta'):
         
         raise IOError(('{:s} not found.\nDid you download the proper networks from '
                        'our server and place them properly?').format(tfmodel + '.meta'))
 
-    imdb = combined_roidb('Isabel_val')
+    imdb = combined_roidb(dataset)
 
 
     tfconfig = tf.ConfigProto(allow_soft_placement=True)
