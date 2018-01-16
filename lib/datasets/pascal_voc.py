@@ -189,7 +189,6 @@ class pascal_voc(imdb):
         path = os.path.join(
             self._devkit_path,
             'results',
-            'VOC' + self._year,
             'Main',
             filename)
         return path
