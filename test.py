@@ -68,7 +68,7 @@ if __name__ == '__main__':
     # model path
     demonet = args.demo_net
     dataset = args.dataset
-    tfmodel = os.path.join('scratch','dwaithe','models' , 'default', NETS[demonet][0])
+    tfmodel = os.path.join('scratch','dwaithe','models' , 'default', NETS[demonet][0],'default')
     print('tfmodel',tfmodel)
     if not os.path.isfile(tfmodel + '.meta'):
         
