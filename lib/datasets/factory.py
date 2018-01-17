@@ -39,9 +39,9 @@ for year in ['2015']:
 #for year in ['2015']:
  # for split in ['test', 'test-dev']:
     #name = 'coco_{}_{}'.format(year, split)
-for split in ['val', 'trainval']:
-  name = 'test_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_test','test_class'))
+for split in ['val', 'trainval_n10','trainval_n20','trainval_n30']:
+  name = 'c127dapi_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_c127dapi_class','c127dapi_class'))
   name = 'Isabel_{}'.format(split)
   __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_Isabella','Isabel_class'))
 
