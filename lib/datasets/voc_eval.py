@@ -138,7 +138,7 @@ def voc_eval(detpath,
     class_recs = {}
     npos = 0
     for imagename in imagenames:
-        print('classname',classname,recs[imagename]['name'],classname==recs[imagename]['name'])
+        print('classname',classname,recs[imagename][0]['name'],classname==recs[imagename]['name'])
 
         R = [obj for obj in recs[imagename] if obj['name'] == classname]
 
