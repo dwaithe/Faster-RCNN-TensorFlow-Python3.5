@@ -147,6 +147,8 @@ def voc_eval(detpath,
 
     # read dets
     detfile = detpath.format(classname)
+
+    print('detfile2',detfile2)
     with open(detfile, 'r') as f:
         lines = f.readlines()
 
