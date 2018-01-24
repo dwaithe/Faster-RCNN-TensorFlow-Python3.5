@@ -174,6 +174,7 @@ def voc_eval(detpath,
             bb = BB[d, :].astype(float)
             ovmax = -np.inf
             BBGT = R['bbox'].astype(float)
+            print('ids',image_ids)
 
             if BBGT.size > 0:
                 # compute overlaps
