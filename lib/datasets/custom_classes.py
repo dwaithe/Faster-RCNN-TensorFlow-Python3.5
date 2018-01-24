@@ -235,11 +235,12 @@ class custom_classes(imdb):
         for i, cls in enumerate(self._classes):
             if cls == '__background__':
                 continue
-            print('clases',cls)
+            print('classes',cls)
             filename = self._get_voc_results_file_template().format(cls)
             rec, prec, ap = voc_eval(
                 filename, annopath, imagesetfile, cls, cachedir, ovthresh=0.5,
                 use_07_metric=use_07_metric)
+            print('rec,prec,ap',rec,prec,ap)
             aps += [ap]
             print(('AP for {} = {:.4f}'.format(cls, ap)))
             with open(os.path.join(output_dir, cls + '_pr.pkl'), 'wb') as f:
