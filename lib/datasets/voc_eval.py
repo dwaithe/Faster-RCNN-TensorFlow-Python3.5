@@ -137,6 +137,7 @@ def voc_eval(detpath,
     npos = 0
     for imagename in imagenames:
         R = [obj for obj in recs[imagename] if obj['name'] == classname]
+        print('R',R)
         bbox = np.array([x['bbox'] for x in R])
         difficult = np.array([x['difficult'] for x in R]).astype(np.bool)
         det = [False] * len(R)
@@ -174,7 +175,7 @@ def voc_eval(detpath,
             bb = BB[d, :].astype(float)
             ovmax = -np.inf
             BBGT = R['bbox'].astype(float)
-            print('ids',image_ids)
+
 
             if BBGT.size > 0:
                 # compute overlaps
