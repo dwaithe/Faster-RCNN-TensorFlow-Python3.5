@@ -116,7 +116,9 @@ def voc_eval(detpath,
     # load annots
     recs = {}
     for i, imagename in enumerate(imagenames):
+        print( i, imagename)
         recs[imagename] = parse_rec(annopath.format(imagename))
+        print('R',recs[imagename])
         if i % 100 == 0:
             print('Reading annotation for {:d}/{:d}'.format(
                 i + 1, len(imagenames)))
@@ -137,7 +139,7 @@ def voc_eval(detpath,
     npos = 0
     for imagename in imagenames:
         R = [obj for obj in recs[imagename] if obj['name'] == classname]
-        print('R',R)
+
         bbox = np.array([x['bbox'] for x in R])
         difficult = np.array([x['difficult'] for x in R]).astype(np.bool)
         det = [False] * len(R)
