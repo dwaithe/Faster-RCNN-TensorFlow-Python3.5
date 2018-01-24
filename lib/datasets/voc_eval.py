@@ -100,7 +100,8 @@ def voc_eval(detpath,
     # assumes imagesetfile is a text file with each line an image name
     # cachedir caches the annotations in a pickle file
 
-
+    print('detpath',detpath)
+    print('detpath',annopath)
     
     #first load gt
     if not os.path.isdir(cachedir):
