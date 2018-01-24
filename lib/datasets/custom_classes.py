@@ -240,6 +240,7 @@ class custom_classes(imdb):
             rec, prec, ap = voc_eval(
                 filename, annopath, imagesetfile, cls, cachedir, ovthresh=0.5,
                 use_07_metric=use_07_metric)
+            print('filename', 'annopath', 'imagesetfile', 'cls', 'cachedir',filename, annopath, imagesetfile, cls, cachedir)
             print('rec,prec,ap',rec,prec,ap)
             aps += [ap]
             print(('AP for {} = {:.4f}'.format(cls, ap)))
