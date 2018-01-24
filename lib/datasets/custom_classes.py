@@ -226,6 +226,7 @@ class custom_classes(imdb):
             self._image_set + '.txt')
         cachedir = os.path.join(self._devkit_path, 'annotations_cache')
         aps = []
+        print('annopath',annopath)
         # The PASCAL VOC metric changed in 2010
         use_07_metric = True if int(self._year) < 2010 else False
         print('VOC07 metric? ' + ('Yes' if use_07_metric else 'No'))
