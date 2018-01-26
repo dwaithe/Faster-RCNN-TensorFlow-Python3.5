@@ -31,7 +31,9 @@ NETS['voc_2007_trainval_50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_50+c127dapi_class_trainval_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_50+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_25+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['vgg16+dapiCell'] = ('c127dapi_class_test_n30',)
