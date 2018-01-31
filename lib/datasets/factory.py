@@ -46,7 +46,7 @@ for split in ['val', 'trainval_n10','trainval_n20','trainval_n30','train_n10','t
   __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_Isabella','Isabel_class'))
 
 for year in ['2007', '2012']:
-  for split in ['trainval_25','trainval_50','trainval_75']:
+  for split in ['trainval_1','trainval_5','trainval_10','trainval_25','trainval_50','trainval_75']:
     name = 'voc_{}_{}'.format(year, split)
     __sets[name] = (lambda split=split, year=year: pascal_voc(split, year))
 
