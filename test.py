@@ -30,13 +30,26 @@ NETS['voc_2007_trainval_25'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
 NETS['c127dapi_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_50+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_25+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_10+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_5+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_1+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
+
+
 NETS['voc_2007_trainval+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_1+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_5+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_10+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_25+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_50+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
+
+NETS['nucleosome_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_1+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_5+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_10+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_25+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_50+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
