@@ -118,12 +118,12 @@ FLAGS2["CLASSES"] = ['__background__',
 
 FLAGS2["extra_CLASSES"] = True
 if FLAGS2["extra_CLASSES"] == True:
-    #FLAGS2["CLASSES"].append('cell')
+    FLAGS2["CLASSES"].append('cell')
     FLAGS2["CLASSES"].append('cell - peroxisome')
     FLAGS2["CLASSES"].append('cell - nucleosome')
     FLAGS2["CLASSES"].append('cell - c127_dapi')
     FLAGS2["CLASSES"].append('cell - Isabel')
-    FLAGS2["CLASSES"].append('cell - neuroblastoma phalloidin')
+    #FLAGS2["CLASSES"].append('cell - neuroblastoma phalloidin')
 
     FLAGS2["data_path_extras_c127dapi_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'c127dapi_class'))
     FLAGS2["data_path_extras_Isabella"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'Isabella_class'))
