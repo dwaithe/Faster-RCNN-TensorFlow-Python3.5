@@ -118,7 +118,7 @@ FLAGS2["CLASSES"] = ['__background__',
 
 FLAGS2["extra_CLASSES"] = True
 if FLAGS2["extra_CLASSES"] == True:
-    FLAGS2["CLASSES"].append('cell')
+    #FLAGS2["CLASSES"].append('cell')
     FLAGS2["CLASSES"].append('cell - peroxisome')
     FLAGS2["CLASSES"].append('cell - nucleosome')
     FLAGS2["CLASSES"].append('cell - c127_dapi')
