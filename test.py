@@ -61,6 +61,7 @@ NETS['voc_2007_trainval_50+MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_ite
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
 DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
+DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 def combined_roidb(imdb_names):
     """
     Combine multiple roidbs
