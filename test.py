@@ -52,6 +52,15 @@ NETS['voc_2007_trainval_25+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_ite
 NETS['voc_2007_trainval_50+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 
+NETS['MP6843phal_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_1+MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_5+MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_10+MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_25+MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_50+MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
+
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
 DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
