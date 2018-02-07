@@ -34,7 +34,7 @@ from lib.utils.timer import Timer
 
 
 
-ETS = {'vgg16': ('vgg16_faster_rcnn_iter_5000.ckpt',), 'res101': ('res101_faster_rcnn_iter_110000.ckpt',),'voc_2007_trainval+test': ('vgg16_faster_rcnn_iter_40000.ckpt',),'voc_2007_trainval+test+Isabel':('vgg16_faster_rcnn_iter_40000.ckpt',)}
+NETS = {'vgg16': ('vgg16_faster_rcnn_iter_5000.ckpt',), 'res101': ('res101_faster_rcnn_iter_110000.ckpt',),'voc_2007_trainval+test': ('vgg16_faster_rcnn_iter_40000.ckpt',),'voc_2007_trainval+test+Isabel':('vgg16_faster_rcnn_iter_40000.ckpt',)}
 NETS['voc_2007_trainval_25'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
@@ -214,6 +214,11 @@ if __name__ == '__main__':
     im_names.append('010189.jpg')
     im_names.append('010039.jpg')
     im_names.append('010040.jpg')
+    im_names.append('110096.jpg')
+    im_names.append('110097.jpg')
+    im_names.append('110098.jpg')
+    im_names.append('110099.jpg')
+    im_names.append('110100.jpg')
  
 
     for im_name in im_names:
