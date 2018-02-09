@@ -31,10 +31,8 @@ NETS['voc_2007_trainval_50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
-NETS['c127dapi_class_it40000'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['c127dapi_class_it30000'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
-NETS['c127dapi_class_it20000'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
-NETS['c127dapi_class_it10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
+NETS['c127dapi_class'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
+
 
 NETS['voc_2007_trainval_1+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_5+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
