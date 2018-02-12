@@ -41,7 +41,7 @@ NETS['voc_2007_trainval_25+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_
 NETS['voc_2007_trainval_50+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 
-NETS['nucleosome_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['nucleosome_class'] =('vgg16_faster_rcnn_iter_35000.ckpt',)
 NETS['voc_2007_trainval+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_1+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_5+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
@@ -50,7 +50,7 @@ NETS['voc_2007_trainval_25+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_ite
 NETS['voc_2007_trainval_50+nucleosome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 
-NETS['MP6843phal_class'] =('vgg16_faster_rcnn_iter_5000.ckpt',)
+NETS['MP6843phal_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval+MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_1+MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_5+MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
