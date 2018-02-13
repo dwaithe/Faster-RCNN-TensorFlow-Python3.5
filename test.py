@@ -76,11 +76,27 @@ NETS['voc_2007_trainval+MP6843phal_class_train_n120'] =('vgg16_faster_rcnn_iter_
 NETS['voc_2007_trainval+MP6843phal_class_train_n150'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval+MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
+NETS['MP6843phaldapi_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_1+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_5+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_10+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_25+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval_50+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n100'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n120'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n150'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['voc_2007_trainval+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
 DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
+DATASETS['MP6843phaldapiCell'] = ('MP6843phal_class_test_n30',)
 def combined_roidb(imdb_names):
     """
     Combine multiple roidbs
