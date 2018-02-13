@@ -96,7 +96,7 @@ DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_
 DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
 DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
-DATASETS['MP6843phaldapiCell'] = ('MP6843phal_class_test_n30',)
+DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
 def combined_roidb(imdb_names):
     """
     Combine multiple roidbs
