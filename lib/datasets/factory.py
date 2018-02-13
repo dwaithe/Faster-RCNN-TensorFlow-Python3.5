@@ -51,7 +51,7 @@ for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n15
   __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_MP6843phal_class','MP6843phal_class'))
 for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180']:
   name = 'MP6843phaldapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_MP6843phal_class','MP6843phal_class'))
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_MP6843phaldapi_class','MP6843phaldapi_class'))
 
 
 for year in ['2007', '2012']:
