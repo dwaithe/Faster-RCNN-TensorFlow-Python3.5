@@ -24,7 +24,7 @@ from .voc_eval import voc_eval
 
 class custom_classes(imdb):
     def __init__(self, image_set, year, directory,imdb_name,devkit_path=None):
-        imdb.__init__(self,imdb_name)
+        imdb.__init__(self,imdb_name+ '_' + image_set)
         self._year = year
         self._image_set = image_set
         self._devkit_path = cfg.FLAGS2[directory]
