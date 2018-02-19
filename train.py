@@ -76,7 +76,7 @@ class Train:
 		#self.imdb, self.roidb = combined_roidb("Isabel")
 
 		
-
+		print(self.imdb)
 		self.data_layer = RoIDataLayer(self.roidb, self.imdb.num_classes)
 		self.output_dir = cfg.get_output_dir(self.imdb, 'default')
 
