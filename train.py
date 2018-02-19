@@ -81,7 +81,7 @@ class Train:
 		self.output_dir = cfg.get_output_dir(self.imdb, 'default')
 
 		print(self.output_dir)
-		print(B)
+		
 
 
 	def train(self):
