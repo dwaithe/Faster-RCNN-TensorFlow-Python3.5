@@ -48,7 +48,7 @@ def combined_roidb(imdb_names):
 
 	roidbs = [get_roidb(s) for s in imdb_names.split('+')]
 	roidb = roidbs[0]
-	if len(roidbs) > 0:
+	if len(roidbs) > 1:
 
 		for r in roidbs[1:]:
 			roidb.extend(r)
@@ -79,6 +79,9 @@ class Train:
 
 		self.data_layer = RoIDataLayer(self.roidb, self.imdb.num_classes)
 		self.output_dir = cfg.get_output_dir(self.imdb, 'default')
+
+		print(self.output_dir)
+		print(B)
 
 
 	def train(self):
