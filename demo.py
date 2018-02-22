@@ -110,7 +110,7 @@ DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
 
-def vis_detections(im, class_name, dets, thresh=0.5):
+def vis_detections(im, class_name, dets, thresh=0.1):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
     if len(inds) == 0:
