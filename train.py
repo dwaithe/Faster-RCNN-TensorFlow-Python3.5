@@ -10,6 +10,7 @@ from lib.datasets.factory import get_imdb
 from lib.datasets.imdb import imdb as imdb2
 from lib.layer_utils.roi_data_layer import RoIDataLayer
 from lib.nets.vgg16 import vgg16
+from lib.nets.resnet_v1 import resnetv1
 from lib.utils.timer import Timer
 import sys
 try:
@@ -65,6 +66,8 @@ class Train:
 		# Create network
 		if cfg.FLAGS.network == 'vgg16':
 			self.net = vgg16(batch_size=cfg.FLAGS.ims_per_batch)
+		elif cfg.FLAGS.network == 'RESNET_v1_50':
+			self.net = resnetv1(batch_size=cfg.FLAGS.ims_per_batch)
 		else:
 			raise NotImplementedError
 
@@ -126,21 +129,26 @@ class Train:
 
 		# Load weights
 		# Fresh train directly from ImageNet weights
-		print('Loading initial model weights from {:s}'.format(cfg.FLAGS.pretrained_model))
+		if cfg.FLAGS.network == 'vgg16':
+			pretrained_model = cfg.FLAGS.pretrained_model_vgg
+		elif cfg.FLAGS.network == 'RESNET_v1_50':
+			pretrained_model = cfg.FLAGS.pretrained_model_resnet_50
+
+		print('Loading initial model weights from {:s}'.format(pretrained_model))
 		variables = tf.global_variables()
 		# Initialize all variables first
 		sess.run(tf.variables_initializer(variables, name='init'))
-		var_keep_dic = self.get_variables_in_checkpoint_file(cfg.FLAGS.pretrained_model)
+		var_keep_dic = self.get_variables_in_checkpoint_file(pretrained_model)
 		# Get the variables to restore, ignorizing the variables to fix
 		variables_to_restore = self.net.get_variables_to_restore(variables, var_keep_dic)
 
 		restorer = tf.train.Saver(variables_to_restore)
-		restorer.restore(sess, cfg.FLAGS.pretrained_model)
+		restorer.restore(sess, pretrained_model)
 		print('Loaded.')
 		# Need to fix the variables before loading, so that the RGB weights are changed to BGR
 		# For VGG16 it also changes the convolutional weights fc6 and fc7 to
 		# fully connected weights
-		self.net.fix_variables(sess, cfg.FLAGS.pretrained_model)
+		self.net.fix_variables(sess, pretrained_model)
 		print('Fixed.')
 		for op in tf.get_default_graph().get_operations():
 			print(str(op.name))

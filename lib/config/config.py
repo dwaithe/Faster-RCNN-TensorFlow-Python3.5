@@ -3,9 +3,12 @@ import os.path as osp
 
 import numpy as np
 import tensorflow as tf
+from easydict import EasyDict as edict
+
 
 FLAGS = tf.app.flags.FLAGS
 FLAGS2 = {}
+RESNET = {}
 
 ######################
 # General Parameters #
@@ -16,8 +19,8 @@ tf.app.flags.DEFINE_integer('rng_seed', 3, "Tensorflow seed for reproducibility"
 ######################
 # Network Parameters #
 ######################
+#tf.app.flags.DEFINE_string('network', "RESNET_v1_50", "The network to be used as backbone")
 tf.app.flags.DEFINE_string('network', "vgg16", "The network to be used as backbone")
-
 #######################
 # Training Parameters #
 #######################
@@ -32,7 +35,9 @@ tf.app.flags.DEFINE_integer('step_size', 30000, "Step size for reducing the lear
 tf.app.flags.DEFINE_integer('display', 10, "Iteration intervals for showing the loss during training, on command line interface")
 
 tf.app.flags.DEFINE_string('initializer', "truncated", "Network initialization parameters")
-tf.app.flags.DEFINE_string('pretrained_model', "./data/imagenet_weights/vgg16.ckpt", "Pretrained network weights")
+tf.app.flags.DEFINE_string('pretrained_model_vgg', "./data/imagenet_weights/vgg16.ckpt", "Pretrained network weights")
+tf.app.flags.DEFINE_string('pretrained_model_resnet_50', "./data/imagenet_weights/resnet_v1_50.ckpt", "Pretrained network weights")
+
 
 tf.app.flags.DEFINE_boolean('bias_decay', False, "Whether to have weight decay on bias as well")
 tf.app.flags.DEFINE_boolean('double_bias', True, "Whether to double the learning rate for bias")
@@ -102,7 +107,9 @@ tf.app.flags.DEFINE_integer('roi_pooling_size', 7, "Size of the pooled region af
 ######################
 FLAGS2["root_dir"] = osp.abspath(osp.join(osp.dirname(__file__), '..', '..'))
 FLAGS2["data_dir"] = osp.abspath(osp.join(FLAGS2["root_dir"], 'data'))
-FLAGS2["save_dir"] = "/scratch/dwaithe/models/"
+
+#FLAGS2["save_dir"] = "/scratch/dwaithe/models/"
+FLAGS2["save_dir"] = "/Users/dwaithe/Documents/collaborators/WaitheD/Faster-RCNN-TensorFlow-Python3.5/default/"
 
 #####################
 #Class parameters   #
@@ -131,6 +138,23 @@ if FLAGS2["extra_CLASSES"] == True:
     FLAGS2["data_path_extras_nucleosome_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'nucleosome_class'))
     FLAGS2["data_path_extras_MP6843phal_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'MP6843phal_class'))
     FLAGS2["data_path_extras_MP6843phaldapi_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'MP6843phaldapi_class'))
+
+
+
+# Option to set if max-pooling is appended after crop_and_resize. 
+# if true, the region will be resized to a square of 2xPOOLING_SIZE, 
+# then 2x2 max-pooling is applied; otherwise the region will be directly
+# resized to a square of POOLING_SIZE
+
+
+# Number of fixed blocks during training, by default the first of all 4 blocks is fixed
+# Range: 0 (none) to 3 (all)
+RESNET['WEIGHT_DECAY'] = 0.0001
+RESNET['FIXED_BLOCKS'] = 1
+RESNET['POOLING_MODE'] = 'crop'
+RESNET['POOLING_SIZE'] = 7
+RESNET['TRUNCATED'] = False
+RESNET['MAX_POOL'] = False
 
 
 
