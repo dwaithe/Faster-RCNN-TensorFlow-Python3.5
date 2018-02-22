@@ -159,7 +159,7 @@ def demo(sess, net, image_name):
 
     # Visualize detections for each class
     CONF_THRESH = 0.1
-    NMS_THRESH = 0.0
+    NMS_THRESH = 0.1
     for cls_ind, cls in enumerate(cfg.FLAGS2["CLASSES"][1:]):
         cls_ind += 1  # because we skipped background
         cls_boxes = boxes[:, 4 * cls_ind:4 * (cls_ind + 1)]
@@ -280,9 +280,9 @@ if __name__ == '__main__':
     #im_names.append('110116.jpg')
     #im_names.append('110117.jpg')
     #im_names.append('110118.jpg')
-    #im_names.append('110119.jpg')
-    #im_names.append('110120.jpg')
-    #im_names.append('110122.jpg')
+    im_names.append('110119.jpg')
+    im_names.append('110120.jpg')
+    im_names.append('110122.jpg')
     im_names.append('110125.jpg')
     im_names.append('110128.jpg')
     im_names.append('110130.jpg')
