@@ -76,6 +76,15 @@ NETS['MP6843phal_class_train_n120'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phal_class_train_n150'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
+NETS['MP6843phal_class_train_n180_40000'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['MP6843phal_class_train_n180_35000'] =('vgg16_faster_rcnn_iter_35000.ckpt',)
+NETS['MP6843phal_class_train_n180_30000'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
+NETS['MP6843phal_class_train_n180_25000'] =('vgg16_faster_rcnn_iter_25000.ckpt',)
+NETS['MP6843phal_class_train_n180_20000'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
+NETS['MP6843phal_class_train_n180_15000'] =('vgg16_faster_rcnn_iter_15000.ckpt',)
+NETS['MP6843phal_class_train_n180_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
+NETS['MP6843phal_class_train_n180_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
+
 
 NETS['voc_2007_trainval+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_1+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
@@ -91,6 +100,15 @@ NETS['MP6843phaldapi_class_train_n100'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phaldapi_class_train_n120'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phaldapi_class_train_n150'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
+NETS['MP6843phaldapi_class_train_n180_40000'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['MP6843phaldapi_class_train_n180_35000'] =('vgg16_faster_rcnn_iter_35000.ckpt',)
+NETS['MP6843phaldapi_class_train_n180_30000'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
+NETS['MP6843phaldapi_class_train_n180_25000'] =('vgg16_faster_rcnn_iter_25000.ckpt',)
+NETS['MP6843phaldapi_class_train_n180_20000'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
+NETS['MP6843phaldapi_class_train_n180_15000'] =('vgg16_faster_rcnn_iter_15000.ckpt',)
+NETS['MP6843phaldapi_class_train_n180_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
+NETS['MP6843phaldapi_class_train_n180_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
