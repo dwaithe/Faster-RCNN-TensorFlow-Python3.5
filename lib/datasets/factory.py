@@ -53,6 +53,13 @@ for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n15
   name = 'MP6843phaldapi_class_{}'.format(split)
   __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_MP6843phaldapi_class','MP6843phaldapi_class'))
 
+for split in ['train_n10','train_n30','train_n55','test_n55']:
+  name = 'peroxisome_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_peroxisome_class','peroxisome_class'))
+for split in ['train_n10','train_n30','train_n55','test_n55']:
+  name = 'peroxisome_full_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_peroxisome_full_class','peroxisome_full_class'))
+
 
 for year in ['2007', '2012']:
   for split in ['trainval_1','trainval_5','trainval_10','trainval_25','trainval_50','trainval_75']:

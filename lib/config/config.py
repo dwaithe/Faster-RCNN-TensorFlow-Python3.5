@@ -125,8 +125,8 @@ FLAGS2["CLASSES"] = ['__background__',
 
 FLAGS2["extra_CLASSES"] = True
 if FLAGS2["extra_CLASSES"] == True:
-    FLAGS2["CLASSES"].append('cell')
-    FLAGS2["CLASSES"].append('cell - peroxisome')
+    FLAGS2["CLASSES"].append('cell - peroxisome gfp-scp all')
+    FLAGS2["CLASSES"].append('cell - peroxisome gfp-scp')
     FLAGS2["CLASSES"].append('cell - nucleosome')
     FLAGS2["CLASSES"].append('cell - c127_dapi')
     FLAGS2["CLASSES"].append('cell - Isabel')
@@ -138,7 +138,8 @@ if FLAGS2["extra_CLASSES"] == True:
     FLAGS2["data_path_extras_nucleosome_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'nucleosome_class'))
     FLAGS2["data_path_extras_MP6843phal_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'MP6843phal_class'))
     FLAGS2["data_path_extras_MP6843phaldapi_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'MP6843phaldapi_class'))
-
+    FLAGS2["data_path_extras_peroxisome_full_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'peroxisome_full_class'))
+    FLAGS2["data_path_extras_peroxisome_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'peroxisome_class'))
 
 
 # Option to set if max-pooling is appended after crop_and_resize. 
