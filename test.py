@@ -110,6 +110,14 @@ NETS['MP6843phaldapi_class_train_n180_15000'] =('vgg16_faster_rcnn_iter_15000.ck
 NETS['MP6843phaldapi_class_train_n180_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
 NETS['MP6843phaldapi_class_train_n180_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
 
+NETS['peroxisome_full_class_train_n55'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['peroxisome_full_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['peroxisome_full_class_train_n10'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
+NETS['peroxisome_class_train_n55'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['peroxisome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['peroxisome_class_train_n10'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
 DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
