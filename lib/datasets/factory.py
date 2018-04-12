@@ -40,22 +40,26 @@ for year in ['2015']:
  # for split in ['test', 'test-dev']:
     #name = 'coco_{}_{}'.format(year, split)
 for split in ['val', 'trainval_n10','trainval_n20','trainval_n30','train_n10','train_n20','train_n30','test_n30']:
-  name = 'c127dapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_c127dapi_class','c127dapi_class'))
-  name = 'Isabel_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_Isabella','Isabel_class'))
-  name = 'nucleosome_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_nucleosome_class','nucleosome_class'))
+  name = 'c127_dapi_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_c127_dapi_class','c127_dapi_class'))
+  name = 'eukaryote_dapi_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_eukaryote_dapi_class','eukaryote_dapi_class'))
+  name = 'nucleopore_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_nucleopore_class','nucleopore_class'))
 for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180']:
-  name = 'MP6843phal_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_MP6843phal_class','MP6843phal_class'))
-for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180']:
-  name = 'MP6843phaldapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_MP6843phaldapi_class','MP6843phaldapi_class'))
+  name = 'neuroblastoma_phal_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_neuroblastoma_phal_class','neuroblastoma_phal_class'))
 
-for split in ['train_n10','train_n30','train_n55','test_n55','test_n30']:
-  name = 'peroxisome_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_peroxisome_class','peroxisome_class'))
+for split in ['train_n80','test_n80']:
+  name = 'glycophorinA_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_glycophorinA_class','glycophorinA_class'))
+#for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180']:
+#  name = 'MP6843phaldapi_class_{}'.format(split)
+#  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_MP6843phaldapi_class','MP6843phaldapi_class'))
+
+#for split in ['train_n10','train_n30','train_n55','test_n55','test_n30']:
+#  name = 'peroxisome_class_{}'.format(split)
+#  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_peroxisome_class','peroxisome_class'))
 for split in ['train_n10','train_n30','train_n55','test_n55','test_n30']:
   name = 'peroxisome_full_class_{}'.format(split)
   __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_peroxisome_full_class','peroxisome_full_class'))

@@ -110,7 +110,7 @@ DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
 
-def vis_detections(im, class_name, dets, thresh=0.5):
+def vis_detections(im, class_name, dets,save_file, thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
     if len(inds) == 0:
@@ -133,6 +133,8 @@ def vis_detections(im, class_name, dets, thresh=0.5):
                 '{:s} {:.3f}'.format(class_name, score),
                 bbox=dict(facecolor='blue', alpha=0.5),
                 fontsize=6, color='white')
+        out_str = class_name+"\t"+str(score)+"\t"+str(bbox[0])+"\t"+str(bbox[1])+"\t"+str(bbox[2])+"\t"+str(bbox[3])+"\n"
+        save_file.write(out_str)
 
     ax.set_title(('{} detections with '
                   'p({} | box) >= {:.1f}').format(class_name, class_name,
@@ -147,7 +149,8 @@ def demo(sess, net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
 
     # Load the demo image
-    im_file = os.path.join(cfg.FLAGS2["data_dir"], 'demo', image_name)
+    im_file = os.path.join(cfg.FLAGS2["data_dir"], 'demo/movie_frames', image_name)
+    print(im_file)
     im = cv2.imread(im_file)
 
     # Detect all object classes and regress object bounds
@@ -159,17 +162,21 @@ def demo(sess, net, image_name):
 
     # Visualize detections for each class
     CONF_THRESH = 0.1
-    NMS_THRESH = 1.0
+    NMS_THRESH = 0.7
+    out_name = os.path.join(cfg.FLAGS2["data_dir"], 'demo/movie_frames',str(image_name[:-4])+str('.txt'))
+    f =  open(out_name,'w')
     for cls_ind, cls in enumerate(cfg.FLAGS2["CLASSES"][1:]):
         cls_ind += 1  # because we skipped background
         cls_boxes = boxes[:, 4 * cls_ind:4 * (cls_ind + 1)]
+        
         cls_scores = scores[:, cls_ind]
         dets = np.hstack((cls_boxes,
                           cls_scores[:, np.newaxis])).astype(np.float32)
         keep = nms(dets, NMS_THRESH)
         dets = dets[keep, :]
-        vis_detections(im, cls, dets, thresh=CONF_THRESH)
-
+        
+        vis_detections(im, cls, dets,f, thresh=CONF_THRESH)
+    f.close()
 
 def parse_args():
     """Parse input arguments."""
@@ -287,12 +294,13 @@ if __name__ == '__main__':
     #im_names.append('110125.jpg')
     #im_names.append('110128.jpg')
     #im_names.append('110130.jpg')
-    im_names.append('movie_frames/C2-Faster-RCNN-TensorFlow-Python3.5-master-NUCLEOPHORE.ome0009.jpg')
+    for i in range(0,274):
+        im_names.append('C2-Faster-RCNN-TensorFlow-Python3.5-master-NUCLEOPHORE.ome%04d.jpg'%i)
  
 
     for im_name in im_names:
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        print('Demo for data/demo/{}'.format(im_name))
+        print('Demo for data/demo/movieframes/{}'.format(im_name))
         demo(sess, net, im_name)
 
     plt.show()
