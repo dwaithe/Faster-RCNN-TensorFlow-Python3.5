@@ -108,8 +108,8 @@ tf.app.flags.DEFINE_integer('roi_pooling_size', 7, "Size of the pooled region af
 FLAGS2["root_dir"] = osp.abspath(osp.join(osp.dirname(__file__), '..', '..'))
 FLAGS2["data_dir"] = osp.abspath(osp.join(FLAGS2["root_dir"], 'data'))
 
-#FLAGS2["save_dir"] = "/scratch/dwaithe/models/"
-FLAGS2["save_dir"] = "/Users/dwaithe/Documents/collaborators/WaitheD/Faster-RCNN-TensorFlow-Python3.5/default/"
+FLAGS2["save_dir"] = "/scratch/dwaithe/models/"
+#FLAGS2["save_dir"] = "/Users/dwaithe/Documents/collaborators/WaitheD/Faster-RCNN-TensorFlow-Python3.5/default/"
 
 #####################
 #Class parameters   #
