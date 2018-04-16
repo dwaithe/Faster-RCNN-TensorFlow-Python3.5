@@ -85,14 +85,14 @@ NETS['MP6843phal_class_train_n180_15000'] =('vgg16_faster_rcnn_iter_15000.ckpt',
 NETS['MP6843phal_class_train_n180_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
 NETS['MP6843phal_class_train_n180_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
 
-NETS['glycophorinA_class_train_n180_40000'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['glycophorinA_class_train_n180_35000'] =('vgg16_faster_rcnn_iter_35000.ckpt',)
-NETS['glycophorinA_class_train_n180_30000'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
-NETS['glycophorinA_class_train_n180_25000'] =('vgg16_faster_rcnn_iter_25000.ckpt',)
-NETS['glycophorinA_class_train_n180_20000'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
-NETS['glycophorinA_class_train_n180_15000'] =('vgg16_faster_rcnn_iter_15000.ckpt',)
-NETS['glycophorinA_class_train_n180_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
-NETS['glycophorinA_class_train_n180_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
+NETS['glycophorinA_class_train_n80'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['glycophorinA_class_train_n80_35000'] =('vgg16_faster_rcnn_iter_35000.ckpt',)
+NETS['glycophorinA_class_train_n80_30000'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
+NETS['glycophorinA_class_train_n80_25000'] =('vgg16_faster_rcnn_iter_25000.ckpt',)
+NETS['glycophorinA_class_train_n80_20000'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
+NETS['glycophorinA_class_train_n80_15000'] =('vgg16_faster_rcnn_iter_15000.ckpt',)
+NETS['glycophorinA_class_train_n80_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
+NETS['glycophorinA_class_train_n80_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
 
 
 NETS['voc_2007_trainval+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
