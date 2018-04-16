@@ -134,7 +134,7 @@ DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
 DATASETS['peroxisomeCell'] = ('peroxisome_class_test_n30',)
 DATASETS['peroxisomeFullCell'] = ('peroxisome_full_class_test_n30',)
-DATASETS['glycophorinATest'] = ('glycophorinA_class_test_n80')
+DATASETS['glycophorinATest'] = ('glycophorinA_class_test_n80',)
 def combined_roidb(imdb_names):
     """
     Combine multiple roidbs
