@@ -74,6 +74,7 @@ for year in ['2007', '2012']:
 
 def get_imdb(name):
   """Get an imdb (image database) by name."""
+  print __sets
   if name not in __sets:
     raise KeyError('Unknown dataset: {}'.format(name))
   
