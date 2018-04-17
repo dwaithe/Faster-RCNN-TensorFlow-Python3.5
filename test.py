@@ -31,7 +31,7 @@ NETS['voc_2007_trainval_50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
-NETS['c127dapi_class'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
+NETS['c127dapi_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 
 NETS['voc_2007_trainval_1+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
@@ -41,14 +41,14 @@ NETS['voc_2007_trainval_25+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_
 NETS['voc_2007_trainval_50+c127dapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 
-NETS['nucleosome_class_40000'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['nucleosome_class_35000'] =('vgg16_faster_rcnn_iter_35000.ckpt',)
-NETS['nucleosome_class_30000'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
-NETS['nucleosome_class_25000'] =('vgg16_faster_rcnn_iter_25000.ckpt',)
-NETS['nucleosome_class_20000'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
-NETS['nucleosome_class_15000'] =('vgg16_faster_rcnn_iter_15000.ckpt',)
-NETS['nucleosome_class_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
-NETS['nucleosome_class_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
+NETS['nucleopore_class'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['nucleopore_class_35000'] =('vgg16_faster_rcnn_iter_35000.ckpt',)
+NETS['nucleopore_class_30000'] =('vgg16_faster_rcnn_iter_30000.ckpt',)
+NETS['nucleopore_class_25000'] =('vgg16_faster_rcnn_iter_25000.ckpt',)
+NETS['nucleopore_class_20000'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
+NETS['nucleopore_class_15000'] =('vgg16_faster_rcnn_iter_15000.ckpt',)
+NETS['nucleopore_class_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
+NETS['nucleopore_class_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
 
 
 
@@ -128,8 +128,8 @@ NETS['peroxisome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['peroxisome_class_train_n10'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
-DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
-DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
+DATASETS['c127_dapiCell'] = ('c127dapi_class_test_n30',)
+DATASETS['nucleoporeCell'] = ('nucleopore_class_test_n20',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
 DATASETS['peroxisomeCell'] = ('peroxisome_class_test_n30',)
