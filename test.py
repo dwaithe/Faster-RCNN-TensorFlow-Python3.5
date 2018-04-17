@@ -128,7 +128,7 @@ NETS['peroxisome_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['peroxisome_class_train_n10'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
-DATASETS['c127_dapiCell'] = ('c127dapi_class_test_n30',)
+DATASETS['c127_dapiCell'] = ('c127_dapi_class_test_n30',)
 DATASETS['nucleoporeCell'] = ('nucleopore_class_test_n20',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
