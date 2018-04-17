@@ -42,6 +42,7 @@ for year in ['2015']:
 for split in ['val', 'trainval_n10','trainval_n20','trainval_n30','train_n10','train_n20','train_n30','test_n30']:
   name = 'c127_dapi_class_{}'.format(split)
   __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_c127_dapi_class','c127_dapi_class'))
+for split in ['train_n40','test_n40']:
   name = 'eukaryote_dapi_class_{}'.format(split)
   __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_eukaryote_dapi_class','eukaryote_dapi_class'))
 for split in ['train_n26','test_n20']:
