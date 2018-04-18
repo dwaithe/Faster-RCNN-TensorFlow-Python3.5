@@ -121,6 +121,7 @@ NETS['MP6843phaldapi_class_train_n180_10000'] =('vgg16_faster_rcnn_iter_10000.ck
 NETS['MP6843phaldapi_class_train_n180_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
 
 NETS['neuroblastoma_phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['eukaryote_dapi_class_train_n40'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 NETS['peroxisome_full_class_train_n55'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['peroxisome_full_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
@@ -138,6 +139,7 @@ DATASETS['neuroblastoma_phal_dapiTest'] = ('MP6843phaldapi_class_test_n180',)
 DATASETS['peroxisomeCell'] = ('peroxisome_class_test_n30',)
 DATASETS['peroxisomeFullCell'] = ('peroxisome_full_class_test_n30',)
 DATASETS['glycophorinATest'] = ('glycophorinA_class_test_n80',)
+DATASETS['eukaryote_dapiTest'] = ('eukaryote_dapi_class_test_n40',)
 def combined_roidb(imdb_names):
     """
     Combine multiple roidbs
