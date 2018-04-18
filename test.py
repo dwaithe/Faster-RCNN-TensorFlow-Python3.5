@@ -120,7 +120,7 @@ NETS['MP6843phaldapi_class_train_n180_15000'] =('vgg16_faster_rcnn_iter_15000.ck
 NETS['MP6843phaldapi_class_train_n180_10000'] =('vgg16_faster_rcnn_iter_10000.ckpt',)
 NETS['MP6843phaldapi_class_train_n180_5000']  =('vgg16_faster_rcnn_iter_5000.ckpt',)
 
-NETS['neuroblastoma_phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
+NETS['neuroblastoma_phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 NETS['peroxisome_full_class_train_n55'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['peroxisome_full_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
