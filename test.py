@@ -174,7 +174,7 @@ def parse_args():
     parser.add_argument('--dataset', dest='dataset', help='Trained dataset [pascal_voc pascal_voc_0712]',
                         choices=DATASETS.keys(), default='pascal_voc_0712')
     parser.add_argument('--iteration', dest='iteration', help='model iteration to evaluate',
-                        choices=DATASETS.keys(), default='40000')
+                        choices=ITERATIONS.keys(), default='40000')
     args = parser.parse_args()
 
     
