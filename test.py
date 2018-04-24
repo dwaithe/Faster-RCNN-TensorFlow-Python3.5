@@ -163,6 +163,8 @@ def parse_args():
                         choices=NETS.keys(), default='res101')
     parser.add_argument('--dataset', dest='dataset', help='Trained dataset [pascal_voc pascal_voc_0712]',
                         choices=DATASETS.keys(), default='pascal_voc_0712')
+    parser.add_argument('--iteration', dest='iteration', help='model iteration to evaluate',
+                        choices=DATASETS.keys(), default='40000')
     args = parser.parse_args()
 
     
@@ -179,7 +181,10 @@ if __name__ == '__main__':
     # model path
     demonet = args.demo_net
     dataset = args.dataset
-    tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',demonet ,'default', NETS[demonet][0])
+    model_iteration = args.iteration
+    
+    model_to_load = "vgg16_faster_rcnn_iter_"+str(model_iteration)+".ckpt"
+    tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',demonet ,'default',model_to_load )
     print('tfmodel',tfmodel)
     if not os.path.isfile(tfmodel + '.meta'):
         
