@@ -140,6 +140,16 @@ DATASETS['peroxisomeCell'] = ('peroxisome_class_test_n30',)
 DATASETS['peroxisomeFullCell'] = ('peroxisome_full_class_test_n30',)
 DATASETS['glycophorinATest'] = ('glycophorinA_class_test_n80',)
 DATASETS['eukaryote_dapiTest'] = ('eukaryote_dapi_class_test_n40',)
+
+ITERATIONS ={}
+ITERATIONS['5000'] =()
+ITERATIONS['10000'] =()
+ITERATIONS['15000'] =()
+ITERATIONS['20000'] =()
+ITERATIONS['25000'] =()
+ITERATIONS['30000'] =()
+ITERATIONS['35000'] =()
+ITERATIONS['40000'] =()
 def combined_roidb(imdb_names):
     """
     Combine multiple roidbs
