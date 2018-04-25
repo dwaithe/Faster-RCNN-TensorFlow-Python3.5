@@ -124,7 +124,7 @@ class imdb(object):
             entry = {'boxes': boxes,
                      'gt_overlaps': self.roidb[i]['gt_overlaps'],
                      'gt_classes': self.roidb[i]['gt_classes'],
-                     'flippedh': True}
+                     'flippedh': True,'flippedv': False,'flippedb': False}
             self.roidb.append(entry)
         for i in range(num_images):
             boxes = self.roidb[i]['boxes'].copy()
@@ -136,7 +136,7 @@ class imdb(object):
             entry = {'boxes': boxes,
                      'gt_overlaps': self.roidb[i]['gt_overlaps'],
                      'gt_classes': self.roidb[i]['gt_classes'],
-                     'flippedv': True}
+                     'flippedh': False,'flippedv': True,'flippedb': False}
             self.roidb.append(entry)
         for i in range(num_images):
             boxes = self.roidb[i]['boxes'].copy()
@@ -153,7 +153,7 @@ class imdb(object):
             entry = {'boxes': boxes,
                      'gt_overlaps': self.roidb[i]['gt_overlaps'],
                      'gt_classes': self.roidb[i]['gt_classes'],
-                     'flippedb': True}
+                     'flippedh': False,'flippedv': False,'flippedb': True}
             self.roidb.append(entry)
         self._image_index = self._image_index * 4
 
