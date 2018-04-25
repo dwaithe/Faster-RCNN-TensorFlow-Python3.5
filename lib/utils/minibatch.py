@@ -62,8 +62,7 @@ def _get_image_blob(roidb, scale_inds):
     for i in range(num_images):
         print(roidb[i])
         im = cv2.imread(roidb[i]['image'])
-        if roidb[i]['flipped']:
-            im = im[:, ::-1, :]
+        
         if roidb[i]['flippedh']:
             im = im[:, ::-1, :]
         if roidb[i]['flippedv']:
