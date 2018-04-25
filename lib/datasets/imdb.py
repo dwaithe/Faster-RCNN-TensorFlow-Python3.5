@@ -106,6 +106,9 @@ class imdb(object):
     def _get_widths(self):
         return [PIL.Image.open(self.image_path_at(i)).size[0]
                 for i in range(self.num_images)]
+    def _get_heights(self):
+        return [PIL.Image.open(self.image_path_at(i)).size[1]
+                for i in range(self.num_images)]
 
     def append_flipped_images(self):
         num_images = self.num_images
