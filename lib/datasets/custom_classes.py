@@ -175,7 +175,9 @@ class custom_classes(imdb):
         return {'boxes': boxes,
                 'gt_classes': gt_classes,
                 'gt_overlaps': overlaps,
-                'flipped': False,
+                'flippedh': False,
+                'flippedv': False,
+                'flippedb': False,
                 'seg_areas': seg_areas}
 
     def _get_comp_id(self):
