@@ -62,7 +62,7 @@ NETS['voc_2007_trainval_50+MP6843phal_class_train_n180'] =()
 
 
 
-
+NETS['glycophorinA_class_train_n80+nucleopore_class_train_n26+c127_dapi_class_train_n30+neuroblastoma_phal_class_train_n180+eukaryote_dapi_class_train_n40+peroxisome_full_class_train_n55'] =()
 
 
 
@@ -97,6 +97,7 @@ DATASETS['peroxisomeCell'] = ('peroxisome_class_test_n30',)
 DATASETS['peroxisomeFullCell'] = ('peroxisome_full_class_test_n30',)
 DATASETS['glycophorinATest'] = ('glycophorinA_class_test_n80',)
 DATASETS['eukaryote_dapiTest'] = ('eukaryote_dapi_class_test_n40',)
+#DATASETS['global'] = ('eukaryote_dapi_class_test_n40',)
 
 ITERATIONS ={}
 ITERATIONS['5000'] =()
