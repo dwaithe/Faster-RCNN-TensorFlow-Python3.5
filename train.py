@@ -181,8 +181,9 @@ class Train:
 					  (iter, cfg.FLAGS.max_iters, total_loss, rpn_loss_cls, rpn_loss_box, loss_cls, loss_box))
 				print('speed: {:.3f}s / iter'.format(timer.average_time))
 
-			if iter % cfg.FLAGS.snapshot_iterations == 0:
-				self.snapshot(sess, iter )
+			for itert in cfg.FLAGS2["iterations_to_save"] 
+				if iter == itert:
+					self.snapshot(sess, iter )
 
 		#in_image = tf.get_default_graph().get_tensor_by_name('vgg_16/conv1/conv1_1/biases:0')
 		#inputs = {'image_bytes': tf.saved_model.utils.build_tensor_info(in_image)}
