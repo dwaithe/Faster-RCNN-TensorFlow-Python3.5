@@ -48,6 +48,7 @@ tf.app.flags.DEFINE_integer('test_max_size', 1000, "Max pixel size of the longes
 tf.app.flags.DEFINE_integer('ims_per_batch', 1, "Images to use per minibatch")
 tf.app.flags.DEFINE_integer('snapshot_iterations', 5000, "Iteration to take snapshot")
 
+FLAGS2["iterations_to_save"] = [100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
 FLAGS2["scales"] = (600,)
 FLAGS2["test_scales"] = (600,)
 
