@@ -181,7 +181,7 @@ class Train:
 					  (iter, cfg.FLAGS.max_iters, total_loss, rpn_loss_cls, rpn_loss_box, loss_cls, loss_box))
 				print('speed: {:.3f}s / iter'.format(timer.average_time))
 
-			for itert in cfg.FLAGS2["iterations_to_save"] 
+			for itert in cfg.FLAGS2["iterations_to_save"]:
 				if iter == itert:
 					self.snapshot(sess, iter )
 
