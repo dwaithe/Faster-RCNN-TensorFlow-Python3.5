@@ -259,7 +259,7 @@ if __name__ == '__main__':
 	os.environ["CUDA_VISIBLE_DEVICES"] = sys.argv[1]
 	if sys.argv.__len__() > 3:
 		print('flipping_vertically',sys.argv[3])
-		cfg.FLAGS.flip_vertically = sys.argv[3]
+		cfg.FLAGS.flip_vertically = int(sys.argv[3])
 
 
 	train = Train(sys.argv[2])
