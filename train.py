@@ -71,6 +71,8 @@ class Train:
 		else:
 			raise NotImplementedError
 
+		
+
 		#The database 
 		#self.imdb, self.roidb = combined_roidb("voc_2007_trainval+test+Isabel")
 
@@ -255,5 +257,10 @@ class Train:
 if __name__ == '__main__':
 	
 	os.environ["CUDA_VISIBLE_DEVICES"] = sys.argv[1]
+	if sys.argv.__len__() > 3:
+		print('flipping_vertically',sys.argv[3])
+		cfg.FLAGS.flip_vertically = sys.argv[3]
+
+
 	train = Train(sys.argv[2])
 	train.train()
