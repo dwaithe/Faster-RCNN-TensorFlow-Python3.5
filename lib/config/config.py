@@ -50,7 +50,7 @@ tf.app.flags.DEFINE_integer('snapshot_iterations', 5000, "Iteration to take snap
 tf.app.flags.DEFINE_integer('flip_vertically', True, "Whether to flip training images vertically in addition")
 
 
-FLAGS2["iterations_to_save"] = [100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,20000]
+FLAGS2["iterations_to_save"] = [100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,19000,20000]
 FLAGS2["scales"] = (600,)
 FLAGS2["test_scales"] = (600,)
 
