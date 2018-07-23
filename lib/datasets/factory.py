@@ -59,12 +59,12 @@ for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n15
 
 
 for split in ['train_n80','test_n80']:
-  name = 'erythroblasts_dapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_erythroblasts_dapi_class','erythroblasts_dapi_class'))
+  name = 'erythroblast_dapi_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_erythroblast_dapi_class','erythroblast_dapi_class'))
 
 for split in ['train_n80','test_n80']:
-  name = 'erythroblasts_dapi_glycophorinA_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_erythroblasts_dapi_glycophorinA_class','erythroblasts_dapi_glycophorinA_class'))
+  name = 'erythroblast_dapi_glycophorinA_class_{}'.format(split)
+  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_erythroblast_dapi_glycophorinA_class','erythroblast_dapi_glycophorinA_class'))
 
 
 for split in ['train_n10','train_n30','train_n55','test_n55','test_n30']:
