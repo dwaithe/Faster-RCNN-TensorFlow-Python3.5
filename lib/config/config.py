@@ -122,25 +122,31 @@ FLAGS2["CLASSES"] = ['__background__']
 #Additional classes
 
 FLAGS2["extra_CLASSES"] = True
-if FLAGS2["extra_CLASSES"] == True:
+if FLAGS2["extra_CLASSES"] == False:
 
 
     FLAGS2["CLASSES"].append('cell - neuroblastoma phalloidin')
-    FLAGS2["CLASSES"].append('cell - celltype dapi')
+    FLAGS2["CLASSES"].append('cell - erythroblasts dapi')
     FLAGS2["CLASSES"].append('cell - c127 dapi')
     FLAGS2["CLASSES"].append('cell - eukaryote dapi')
-    FLAGS2["CLASSES"].append('cell - GM5756T nucleopore')
-    FLAGS2["CLASSES"].append('cell - peroxisome gfp-scp all')
+    FLAGS2["CLASSES"].append('cell - fibroblast nucleopore')
+    FLAGS2["CLASSES"].append('cell - hela peroxisome all')
     
     
     FLAGS2["data_path_extras_neuroblastoma_phal_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'neuroblastoma_phal_class/2018'))
-    FLAGS2["data_path_extras_glycophorinA_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'glycophorinA_class/2018'))
+    FLAGS2["data_path_extras_erythroblasts_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'erythroblasts_dapi_class/2018'))
     FLAGS2["data_path_extras_c127_dapi_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'c127_dapi_class/2018'))
     FLAGS2["data_path_extras_eukaryote_dapi_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'eukaryote_dapi_class/2018'))
-    FLAGS2["data_path_extras_nucleopore_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'nucleopore_class/2018'))
-    FLAGS2["data_path_extras_peroxisome_full_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'peroxisome_full_class/2018'))
-    
+    FLAGS2["data_path_extras_fibroblast_nucleopore_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'fibroblast_nucleopore_class/2018'))
+    FLAGS2["data_path_extras_peroxisome_all_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'peroxisome_all_class/2018'))
 
+if FLAGS2["extra_CLASSES"] == True:   
+    FLAGS2["CLASSES"].append("cell - neuroblastoma phalloidin dapi")
+    FLAGS2["CLASSES"].append("cell - erythroblasts dapi glycophorinA")
+
+    FLAGS2["data_path_extras_neuroblastoma_phal_dapi_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'neuroblastoma_phal_dapi_class/2018'))
+    FLAGS2["data_path_extras_erythroblasts_dapi_glycophorinA_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'erythroblasts_dapi_glycophorinA_class/2018'))
+    
 # Option to set if max-pooling is appended after crop_and_resize. 
 # if true, the region will be resized to a square of 2xPOOLING_SIZE, 
 # then 2x2 max-pooling is applied; otherwise the region will be directly
