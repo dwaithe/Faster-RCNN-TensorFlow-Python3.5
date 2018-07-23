@@ -80,6 +80,8 @@ NETS['voc_2007_trainval_10+MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_it
 NETS['voc_2007_trainval_25+MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['voc_2007_trainval_50+MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
+NETS['global'] =('vgg16_faster_rcnn_iter_20000.ckpt',)
+
 NETS['MP6843phal_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phal_class_train_n50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phal_class_train_n75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
@@ -147,11 +149,12 @@ def vis_detections(im, class_name, dets,save_file, thresh=0.5):
 
 def demo(sess, net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
-
+    path_to_imgs = "/Users/dwaithe/Documents/collaborators/WaitheD/micro_vision/acquisitions/zstacks/test3/pos1_resize/"
     # Load the demo image
-    im_file = os.path.join(cfg.FLAGS2["data_dir"], 'demo/movie_frames', image_name)
+    im_file = os.path.join(cfg.FLAGS2["data_dir"], path_to_imgs, image_name)
     print(im_file)
     im = cv2.imread(im_file)
+    
 
     # Detect all object classes and regress object bounds
     timer = Timer()
@@ -161,9 +164,9 @@ def demo(sess, net, image_name):
     print('Detection took {:.3f}s for {:d} object proposals'.format(timer.total_time, boxes.shape[0]))
 
     # Visualize detections for each class
-    CONF_THRESH = 0.1
+    CONF_THRESH = 0.7
     NMS_THRESH = 0.7
-    out_name = os.path.join(cfg.FLAGS2["data_dir"], 'demo/movie_frames',str(image_name[:-4])+str('.txt'))
+    out_name = os.path.join(cfg.FLAGS2["data_dir"], path_to_imgs, str(image_name[:-4])+str('.txt'))
     f =  open(out_name,'w')
     for cls_ind, cls in enumerate(cfg.FLAGS2["CLASSES"][1:]):
         cls_ind += 1  # because we skipped background
@@ -198,7 +201,7 @@ if __name__ == '__main__':
     dataset = args.dataset
     #tfmodel = os.path.join('output', demonet, DATASETS[dataset][0], 'default', NETS[demonet][0])
     #tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',demonet ,'default', NETS[demonet][0])
-    tfmodel = "/Users/dwaithe/Documents/collaborators/WaitheD/tracking/"+NETS[demonet][0]
+    tfmodel = "/Users/dwaithe/Documents/collaborators/WaitheD/micro_vision/tracking/"+NETS[demonet][0]
     print('does this work',tfmodel)
     if not os.path.isfile(tfmodel + '.meta'):
         print(tfmodel)
@@ -294,8 +297,8 @@ if __name__ == '__main__':
     #im_names.append('110125.jpg')
     #im_names.append('110128.jpg')
     #im_names.append('110130.jpg')
-    for i in range(0,274):
-        im_names.append('C2-Faster-RCNN-TensorFlow-Python3.5-master-NUCLEOPHORE.ome%04d.jpg'%i)
+    for i in range(0,19):
+        im_names.append('img_000000000_Default_%03d.tif'%i)
  
 
     for im_name in im_names:
