@@ -27,52 +27,16 @@ import tensorflow as tf
 
 NETS = {'vgg16': ('vgg16_faster_rcnn_iter_5000.ckpt',), 'res101': ('res101_faster_rcnn_iter_110000.ckpt',),'voc_2007_trainval+test': ('vgg16_faster_rcnn_iter_40000.ckpt',),'voc_2007_trainval+test+Isabel':('vgg16_faster_rcnn_iter_40000.ckpt',)}
 
-NETS['voc_2007_trainval_25'] =()
-NETS['voc_2007_trainval_50'] =()
-NETS['voc_2007_trainval_75'] =()
-NETS['voc_2007_trainval'] =()
 
-
-NETS['voc_2007_trainval_1+c127dapi_class_train_n30'] =()
-NETS['voc_2007_trainval_5+c127dapi_class_train_n30'] =()
-NETS['voc_2007_trainval_10+c127dapi_class_train_n30'] =()
-NETS['voc_2007_trainval_25+c127dapi_class_train_n30'] =()
-NETS['voc_2007_trainval_50+c127dapi_class_train_n30'] =()
-
-
-
-
-
-
-NETS['voc_2007_trainval+nucleosome_class_train_n30'] =()
-NETS['voc_2007_trainval_1+nucleosome_class_train_n30'] =()
-NETS['voc_2007_trainval_5+nucleosome_class_train_n30'] =()
-NETS['voc_2007_trainval_10+nucleosome_class_train_n30'] =()
-NETS['voc_2007_trainval_25+nucleosome_class_train_n30'] =()
-NETS['voc_2007_trainval_50+nucleosome_class_train_n30'] =()
-
-
-
-NETS['voc_2007_trainval+MP6843phal_class_train_n180'] =()
-NETS['voc_2007_trainval_1+MP6843phal_class_train_n180'] =()
-NETS['voc_2007_trainval_5+MP6843phal_class_train_n180'] =()
-NETS['voc_2007_trainval_10+MP6843phal_class_train_n180'] =()
-NETS['voc_2007_trainval_25+MP6843phal_class_train_n180'] =()
-NETS['voc_2007_trainval_50+MP6843phal_class_train_n180'] =()
 
 
 
 NETS['glycophorinA_class_train_n80+nucleopore_class_train_n26+c127_dapi_class_train_n30+neuroblastoma_phal_class_train_n180+eukaryote_dapi_class_train_n40+peroxisome_full_class_train_n55'] =()
 
 
-
-NETS['voc_2007_trainval+MP6843phaldapi_class_train_n180'] =()
-NETS['voc_2007_trainval_1+MP6843phaldapi_class_train_n180'] =()
-NETS['voc_2007_trainval_5+MP6843phaldapi_class_train_n180'] =()
-NETS['voc_2007_trainval_10+MP6843phaldapi_class_train_n180'] =()
-NETS['voc_2007_trainval_25+MP6843phaldapi_class_train_n180'] =()
-NETS['voc_2007_trainval_50+MP6843phaldapi_class_train_n180'] =()
-
+NETS['erythroblast_dapi_glycophorinA_class_train_n80+neuroblastoma_phal_dapi_class_train_n180'] =()
+NETS['erythroblast_dapi_glycophorinA_class_train_n80'] =()
+NETS['neuroblastoma_phal_dapi_class_train_n180'] =()
 
 NETS['glycophorinA_class_train_n80'] =()
 NETS['c127_dapi_class_train_n30'] =()
@@ -80,23 +44,26 @@ NETS['nucleopore_class_train_n26'] =()
 NETS['neuroblastoma_phal_class_train_n180'] =()
 NETS['eukaryote_dapi_class_train_n40'] =()
 
-NETS['peroxisome_full_class_train_n55'] =()
-NETS['peroxisome_full_class_train_n30'] =()
-NETS['peroxisome_full_class_train_n10'] =()
+NETS['hela_peroxisome_full_class_train_n55'] =()
+NETS['hela_peroxisome_full_class_train_n30'] =()
+NETS['hela_peroxisome_full_class_train_n10'] =()
 
-NETS['peroxisome_class_train_n55'] =()
-NETS['peroxisome_class_train_n30'] =()
-NETS['peroxisome_class_train_n10'] =()
+NETS['hela_peroxisome_class_train_n55'] =()
+NETS['hela_peroxisome_class_train_n30'] =()
+NETS['hela_peroxisome_class_train_n10'] =()
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['c127_dapi_class_test_n30'] = ('c127_dapi_class_test_n30',)
-DATASETS['nucleopore_class_test_n20'] = ('nucleopore_class_test_n20',)
+DATASETS['fibroblast_nucleopore_class_test_n20'] = ('fibroblast_nucleopore_class_test_n20',)
 DATASETS['neuroblastoma_phal_class_test_n180'] = ('neuroblastoma_phal_class_test_n180',)
-DATASETS['peroxisome_class_test_n55'] = ('peroxisome_class_test_n55',)
-DATASETS['peroxisome_full_class_test_n55'] = ('peroxisome_full_class_test_n55',)
-DATASETS['glycophorinA_class_test_n80'] = ('glycophorinA_class_test_n80',)
+DATASETS['hela_peroxisome_class_test_n55'] = ('hela_peroxisome_class_test_n55',)
+DATASETS['hela_peroxisome_all_class_test_n55'] = ('hela_peroxisome_all_class_test_n55',)
+DATASETS['erythroblast_dapi_class_test_n80'] = ('erythroblast_dapi_class_test_n80',)
 DATASETS['eukaryote_dapi_class_test_n40'] = ('eukaryote_dapi_class_test_n40',)
-#DATASETS['global'] = ('eukaryote_dapi_class_test_n40',)
+
+DATASETS['erythroblast_dapi_glycophorinA_class_test_n80'] = ('erythroblast_dapi_glycophorinA_class_test_n80',)
+DATASETS['neuroblastoma_phal_dapi_class_test_n180'] = ('neuroblastoma_phal_dapi_class_test_n180',)
+
 
 ITERATIONS ={}
 ITERATIONS['100'] =()
