@@ -10,7 +10,6 @@
 Demo script showing detections in sample images.
 
 See README.md for installation instructions before running.
-
 Some additions by Dominic Waithe 2017.
 Manually allow use using additional classes.
 """
@@ -100,6 +99,7 @@ DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
 
 
 
+
 def vis_detections(im, class_name, dets, thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
@@ -117,12 +117,14 @@ def vis_detections(im, class_name, dets, thresh=0.5):
             plt.Rectangle((bbox[0], bbox[1]),
                           bbox[2] - bbox[0],
                           bbox[3] - bbox[1], fill=False,
+
                           edgecolor='red', linewidth=1)
+
         )
         ax.text(bbox[0], bbox[1] - 2,
                 '{:s} {:.3f}'.format(class_name, score),
-                bbox=dict(facecolor='blue', alpha=0.5),
-                fontsize=6, color='white')
+                bbox=dict(facecolor='blue', alpha=0.5),fontsize=6, color='white')
+
 
     ax.set_title(('{} detections with '
                   'p({} | box) >= {:.1f}').format(class_name, class_name,
@@ -137,8 +139,10 @@ def demo(sess, net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
 
     # Load the demo image
+
     im_file = os.path.join(cfg.FLAGS2["data_dir"],image_name)
     print('file to be imported: ',im_file)
+
     im = cv2.imread(im_file)
 
     # Detect all object classes and regress object bounds
@@ -149,6 +153,7 @@ def demo(sess, net, image_name):
     print('Detection took {:.3f}s for {:d} object proposals'.format(timer.total_time, boxes.shape[0]))
 
     # Visualize detections for each class
+
     CONF_THRESH = 0.6
     NMS_THRESH = 0.6
     for cls_ind, cls in enumerate(cfg.FLAGS2["CLASSES"][1:]):
@@ -184,6 +189,7 @@ if __name__ == '__main__':
     tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',NETS[demonet][0])
     #tfmodel = "/Users/dwaithe/Documents/collaborators/WaitheD/tracking/"+NETS[demonet][0]
     print('does this work',tfmodel)
+
     if not os.path.isfile(tfmodel + '.meta'):
         print(tfmodel)
         raise IOError(('{:s} not found.\nDid you download the proper networks from '
@@ -196,6 +202,7 @@ if __name__ == '__main__':
     # init session
     sess = tf.Session(config=tfconfig)
     # load network
+
     #if demonet == 'vgg16' or 'voc_2007_trainval+test':
     net = vgg16(batch_size=1)
     # elif demonet == 'res101':
@@ -207,6 +214,7 @@ if __name__ == '__main__':
     saver.restore(sess, tfmodel)
 
     print('Loaded network {:s}'.format(tfmodel))
+
     im_names = []
     
     im_names.append('test/img_000000000_Default_001.png')
@@ -218,6 +226,6 @@ if __name__ == '__main__':
     for im_name in im_names:
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
         print('Demo for {}'.format(im_name))
-        demo(sess, net, im_name)
+
 
     plt.show()

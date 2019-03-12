@@ -3,6 +3,7 @@ import os.path as osp
 
 import numpy as np
 import tensorflow as tf
+
 from easydict import EasyDict as edict
 
 
@@ -19,8 +20,10 @@ tf.app.flags.DEFINE_integer('rng_seed', 3, "Tensorflow seed for reproducibility"
 ######################
 # Network Parameters #
 ######################
+
 #tf.app.flags.DEFINE_string('network', "RESNET_v1_50", "The network to be used as backbone")
 tf.app.flags.DEFINE_string('network', "vgg16", "The network to be used as backbone")
+
 #######################
 # Training Parameters #
 #######################
@@ -30,6 +33,7 @@ tf.app.flags.DEFINE_float('momentum', 0.9, "Momentum")
 tf.app.flags.DEFINE_float('gamma', 0.1, "Factor for reducing the learning rate")
 
 tf.app.flags.DEFINE_integer('batch_size', 256, "Network batch size during training")
+
 tf.app.flags.DEFINE_integer('max_iters', 20000, "Max iteration")
 tf.app.flags.DEFINE_integer('step_size', 10000, "Step size for reducing the learning rate, currently only support one step")
 tf.app.flags.DEFINE_integer('display', 10, "Iteration intervals for showing the loss during training, on command line interface")
@@ -37,6 +41,7 @@ tf.app.flags.DEFINE_integer('display', 10, "Iteration intervals for showing the 
 tf.app.flags.DEFINE_string('initializer', "truncated", "Network initialization parameters")
 tf.app.flags.DEFINE_string('pretrained_model_vgg', "./data/imagenet_weights/vgg16.ckpt", "Pretrained network weights")
 tf.app.flags.DEFINE_string('pretrained_model_resnet_50', "./data/imagenet_weights/resnet_v1_50.ckpt", "Pretrained network weights")
+
 
 
 tf.app.flags.DEFINE_boolean('bias_decay', False, "Whether to have weight decay on bias as well")
@@ -47,10 +52,12 @@ tf.app.flags.DEFINE_integer('max_size', 1000, "Max pixel size of the longest sid
 tf.app.flags.DEFINE_integer('test_max_size', 1000, "Max pixel size of the longest side of a scaled input image")
 tf.app.flags.DEFINE_integer('ims_per_batch', 1, "Images to use per minibatch")
 tf.app.flags.DEFINE_integer('snapshot_iterations', 5000, "Iteration to take snapshot")
+
 tf.app.flags.DEFINE_integer('flip_vertically', True, "Whether to flip training images vertically in addition")
 
 
 FLAGS2["iterations_to_save"] = [100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,19000,20000]
+
 FLAGS2["scales"] = (600,)
 FLAGS2["test_scales"] = (600,)
 
@@ -111,6 +118,7 @@ tf.app.flags.DEFINE_integer('roi_pooling_size', 7, "Size of the pooled region af
 FLAGS2["root_dir"] = osp.abspath(osp.join(osp.dirname(__file__), '..', '..'))
 FLAGS2["data_dir"] = osp.abspath(osp.join(FLAGS2["root_dir"], 'data'))
 
+
 FLAGS2["save_dir"] = "/scratch/dwaithe/models/"
 #FLAGS2["save_dir"] = "/Users/dwaithe/Documents/collaborators/WaitheD/Faster-RCNN-TensorFlow-Python3.5/default/"
 
@@ -163,7 +171,6 @@ RESNET['TRUNCATED'] = False
 RESNET['MAX_POOL'] = False
 
 
-
 def get_output_dir(imdb, weights_filename):
     """Return the directory where experimental artifacts are placed.
     If the directory does not exist, it is created.
@@ -171,7 +178,9 @@ def get_output_dir(imdb, weights_filename):
     A canonical path is built using the name from an imdb and a network
     (if not None).
     """
+
     outdir = osp.abspath(osp.join(FLAGS2["save_dir"], FLAGS2["save_dir"] , 'default', imdb.name))
+
     if weights_filename is None:
         weights_filename = 'default'
     outdir = osp.join(outdir, weights_filename)

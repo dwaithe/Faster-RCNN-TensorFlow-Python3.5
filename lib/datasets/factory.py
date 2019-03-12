@@ -13,7 +13,10 @@ from __future__ import print_function
 __sets = {}
 from lib.datasets.pascal_voc import pascal_voc
 from lib.datasets.coco import coco
+<<<<<<< HEAD
 from lib.datasets.custom_classes import custom_classes
+=======
+>>>>>>> a94641ed15fcdb23d923cbf57cb26484dc766f9f
 
 import numpy as np
 
@@ -35,6 +38,7 @@ for year in ['2015']:
     name = 'coco_{}_{}'.format(year, split)
     __sets[name] = (lambda split=split, year=year: coco(split, year))
 
+<<<<<<< HEAD
 # Set up dominic 2017
 #for year in ['2015']:
  # for split in ['test', 'test-dev']:
@@ -85,6 +89,13 @@ def get_imdb(name):
   if name not in __sets:
     raise KeyError('Unknown dataset: {}'.format(name))
   
+=======
+
+def get_imdb(name):
+  """Get an imdb (image database) by name."""
+  if name not in __sets:
+    raise KeyError('Unknown dataset: {}'.format(name))
+>>>>>>> a94641ed15fcdb23d923cbf57cb26484dc766f9f
   return __sets[name]()
 
 

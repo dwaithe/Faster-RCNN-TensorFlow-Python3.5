@@ -3,7 +3,9 @@ import time
 import numpy as np
 import tensorflow as tf
 from tensorflow.python import pywrap_tensorflow
+
 import os
+
 import lib.config.config as cfg
 from lib.datasets import roidb as rdl_roidb
 from lib.datasets.factory import get_imdb
@@ -20,6 +22,7 @@ except ImportError:
 import os
 
 def get_training_roidb(imdb):
+
 	"""Returns a roidb (Region of Interest database) for use in training."""
 	if True:
 		print('Appending horizontally-flipped training examples...')
@@ -264,3 +267,4 @@ if __name__ == '__main__':
 
 	train = Train(sys.argv[2])
 	train.train()
+

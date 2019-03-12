@@ -30,6 +30,7 @@ class pascal_voc(imdb):
         self._devkit_path = self._get_default_path() if devkit_path is None \
             else devkit_path
         self._data_path = os.path.join(self._devkit_path, 'VOC' + self._year)
+
         self._classes = cfg.FLAGS2["CLASSES"]
         self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
         self._image_ext = '.jpg'
@@ -93,6 +94,7 @@ class pascal_voc(imdb):
 
         This function loads/saves from/to a cache file to speed up future calls.
         """
+
         #cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
         #if os.path.exists(cache_file):
         #    with open(cache_file, 'rb') as fid:
@@ -109,6 +111,7 @@ class pascal_voc(imdb):
         #    pickle.dump(gt_roidb, fid, pickle.HIGHEST_PROTOCOL)
         #print('wrote gt roidb to {}'.format(cache_file))
         print('not saving or loading cache of annotations. custom_classes')
+
 
         return gt_roidb
 
@@ -189,6 +192,7 @@ class pascal_voc(imdb):
         path = os.path.join(
             self._devkit_path,
             'results',
+
             'Main',
             filename)
         return path
@@ -213,6 +217,7 @@ class pascal_voc(imdb):
 
     def _do_python_eval(self, output_dir='output'):
         annopath = self._devkit_path + '/VOC2007/Annotations/' + '{:s}.xml'
+
         imagesetfile = os.path.join(
             self._devkit_path,
             'VOC' + self._year,
@@ -294,5 +299,6 @@ if __name__ == '__main__':
     d = pascal_voc('trainval', '2007')
     res = d.roidb
     from IPython import embed;
+
 
     embed()

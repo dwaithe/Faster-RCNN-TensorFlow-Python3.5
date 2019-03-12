@@ -265,6 +265,7 @@ class Network(object):
         self._tag = tag
 
         self._num_classes = num_classes
+
         self._mode = mode
         self._anchor_scales = anchor_scales
         self._num_scales = len(anchor_scales)

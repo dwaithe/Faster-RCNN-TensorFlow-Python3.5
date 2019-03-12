@@ -60,6 +60,7 @@ def _get_image_blob(roidb, scale_inds):
     processed_ims = []
     im_scales = []
     for i in range(num_images):
+
         
         im = cv2.imread(roidb[i]['image'])
         #print('vertical',roidb[i]['flippedh'],roidb[i]['flippedv'],roidb[i]['flippedb'])
@@ -69,6 +70,7 @@ def _get_image_blob(roidb, scale_inds):
             im = im[::-1, ::, :]
         if roidb[i]['flippedb']:
             im = im[::-1, ::-1, :]
+
 
         target_size = cfg.FLAGS2["scales"][scale_inds[i]]
         im, im_scale = prep_im_for_blob(im, cfg.FLAGS2["pixel_means"], target_size, cfg.FLAGS.max_size)
