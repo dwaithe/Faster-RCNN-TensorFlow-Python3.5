@@ -121,7 +121,7 @@ FLAGS2["CLASSES"] = ['__background__']
 
 #Additional classes
 
-FLAGS2["extra_CLASSES"] = True
+FLAGS2["extra_CLASSES"] = False
 if FLAGS2["extra_CLASSES"] == False:
 
 

@@ -32,7 +32,7 @@ from lib.utils.test import im_detect
 from lib.nets.vgg16 import vgg16
 from lib.utils.timer import Timer
 
-
+import tifffile as tifffile
 
 
 
@@ -112,7 +112,7 @@ DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
 
-def vis_detections(im, class_name, dets,save_file, thresh=0.5):
+def vis_detections(im, class_name, dets,thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
     if len(inds) == 0:
@@ -120,7 +120,7 @@ def vis_detections(im, class_name, dets,save_file, thresh=0.5):
 
     im = im[:, :, (2, 1, 0)]
     fig, ax = plt.subplots(figsize=(12, 12))
-    ax.imshow(im, aspect='equal')
+    ax.imshow(im, aspect='equal',vmin=0,vmax=255)
     for i in inds:
         bbox = dets[i, :4]
         score = dets[i, -1]
@@ -135,8 +135,8 @@ def vis_detections(im, class_name, dets,save_file, thresh=0.5):
                 '{:s} {:.3f}'.format(class_name, score),
                 bbox=dict(facecolor='blue', alpha=0.5),
                 fontsize=6, color='white')
-        out_str = class_name+"\t"+str(score)+"\t"+str(bbox[0])+"\t"+str(bbox[1])+"\t"+str(bbox[2])+"\t"+str(bbox[3])+"\n"
-        save_file.write(out_str)
+        #out_str = class_name+"\t"+str(score)+"\t"+str(bbox[0])+"\t"+str(bbox[1])+"\t"+str(bbox[2])+"\t"+str(bbox[3])+"\n"
+        #save_file.write(out_str)
 
     ax.set_title(('{} detections with '
                   'p({} | box) >= {:.1f}').format(class_name, class_name,
@@ -147,13 +147,14 @@ def vis_detections(im, class_name, dets,save_file, thresh=0.5):
     plt.draw()
 
 
-def demo(sess, net, image_name):
+def demo(sess, net, im, image_name,out_path):
+    #im, im_ref,im_path
     """Detect object classes in an image using pre-computed object proposals."""
-    path_to_imgs = "/Users/dwaithe/Documents/collaborators/WaitheD/micro_vision/acquisitions/zstacks/test3/pos1_resize/"
+    #path_to_imgs = "/Users/dwaithe/Documents/collaborators/WaitheD/micro_vision/acquisitions/zstacks/test3/pos1_resize/"
     # Load the demo image
-    im_file = os.path.join(cfg.FLAGS2["data_dir"], path_to_imgs, image_name)
-    print(im_file)
-    im = cv2.imread(im_file)
+    #im_file = os.path.join(cfg.FLAGS2["data_dir"], path_to_imgs, image_name)
+    #print(im_file)
+    #im = cv2.imread(im_file)
     
 
     # Detect all object classes and regress object bounds
@@ -166,52 +167,32 @@ def demo(sess, net, image_name):
     # Visualize detections for each class
     CONF_THRESH = 0.7
     NMS_THRESH = 0.7
-    out_name = os.path.join(cfg.FLAGS2["data_dir"], path_to_imgs, str(image_name[:-4])+str('.txt'))
+    out_name = os.path.join(cfg.FLAGS2["data_dir"], out_path, str(image_name)+str('.txt'))
     f =  open(out_name,'w')
     for cls_ind, cls in enumerate(cfg.FLAGS2["CLASSES"][1:]):
         cls_ind += 1  # because we skipped background
         cls_boxes = boxes[:, 4 * cls_ind:4 * (cls_ind + 1)]
         
         cls_scores = scores[:, cls_ind]
-        dets = np.hstack((cls_boxes,
-                          cls_scores[:, np.newaxis])).astype(np.float32)
+        dets = np.hstack((cls_boxes, cls_scores[:, np.newaxis])).astype(np.float32)
         keep = nms(dets, NMS_THRESH)
         dets = dets[keep, :]
+        inds = np.where(dets[:, -1] >= CONF_THRESH)[0]
         
-        vis_detections(im, cls, dets,f, thresh=CONF_THRESH)
+        if len(inds) > 0:
+        
+            for i in inds:
+                bbox = dets[i, :4]
+                score = dets[i, -1]
+                out_str = cls+"\t"+str(score)+"\t"+str(bbox[0])+"\t"+str(bbox[1])+"\t"+str(bbox[2])+"\t"+str(bbox[3])+"\n"
+                f.write(out_str)
+        
+        #vis_detections(im, cls, dets, thresh=CONF_THRESH)
     f.close()
-
-def parse_args():
-    """Parse input arguments."""
-    parser = argparse.ArgumentParser(description='Tensorflow Faster R-CNN demo')
-    parser.add_argument('--net', dest='demo_net', help='Network to use [vgg16 res101]',
-                        choices=NETS.keys(), default='res101')
-    parser.add_argument('--dataset', dest='dataset', help='Trained dataset [pascal_voc pascal_voc_0712]',
-                        choices=DATASETS.keys(), default='pascal_voc_0712')
-    args = parser.parse_args()
-
-    return args
-
-
-if __name__ == '__main__':
-    args = parse_args()
-
-    # model path
-    demonet = args.demo_net
-    dataset = args.dataset
-    #tfmodel = os.path.join('output', demonet, DATASETS[dataset][0], 'default', NETS[demonet][0])
-    #tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',demonet ,'default', NETS[demonet][0])
-    tfmodel = "/Users/dwaithe/Documents/collaborators/WaitheD/micro_vision/tracking/"+NETS[demonet][0]
-    print('does this work',tfmodel)
-    if not os.path.isfile(tfmodel + '.meta'):
-        print(tfmodel)
-        raise IOError(('{:s} not found.\nDid you download the proper networks from '
-                       'our server and place them properly?').format(tfmodel + '.meta'))
-
+def start_import(imgstack,demonet,tfmodel):
     # set config
     tfconfig = tf.ConfigProto(allow_soft_placement=True)
     tfconfig.gpu_options.allow_growth = True
-
     # init session
     sess = tf.Session(config=tfconfig)
     # load network
@@ -226,84 +207,72 @@ if __name__ == '__main__':
     saver.restore(sess, tfmodel)
 
     print('Loaded network {:s}'.format(tfmodel))
-    im_names = []
-    #im_names = ['010037.jpg','010038.jpg','010039.jpg','010040.jpg','010041.jpg','010057.jpg','010058.jpg','010117.jpg','010118.jpg','010119.jpg','010180.jpg','010181.jpg','010182.jpg']
-    #im_names.append('010158.jpg')
-    #im_names.append('010159.jpg')
-    #im_names.append('010160.jpg')
-    #im_names.append('010161.jpg')
-    #im_names.append('010162.jpg')
-    #im_names.append('010163.jpg')
-    #im_names.append('010164.jpg')
-    #im_names.append('010165.jpg')
-    #im_names.append('010166.jpg')
-    #im_names.append('010167.jpg')
-    #im_names.append('010168.jpg')
-    #im_names.append('010169.jpg')
-    #im_names.append('010170.jpg')
-    #im_names.append('010171.jpg')
-    #im_names.append('010172.jpg')
-    #im_names.append('010173.jpg')
-    #im_names.append('010174.jpg')
-    #im_names.append('010175.jpg')
-    #im_names.append('010176.jpg')
-    #im_names.append('010177.jpg')
-    #im_names.append('010178.jpg')
-    #im_names.append('010179.jpg')
-    #im_names.append('010180.jpg')
-    #im_names.append('010181.jpg')
-    #im_names.append('010182.jpg')
-    #im_names.append('010183.jpg')
-    #im_names.append('010184.jpg')
-    #im_names.append('010185.jpg')
-    #im_names.append('010186.jpg')
-    #im_names.append('010187.jpg')
-    #im_names.append('010188.jpg')
-    #im_names.append('010189.jpg')
-    #im_names.append('010039.jpg')
-    #im_names.append('010040.jpg')
-    #im_names.append('110096.jpg')
-    #im_names.append('110097.jpg')
-    #im_names.append('110098.jpg')
-    #im_names.append('110099.jpg')
-    #im_names.append('110100.jpg')
-    #im_names.append('110084.jpg')
-    #im_names.append('110085.jpg')
-    #im_names.append('110086.jpg')
-    #im_names.append('110090.jpg')
-    #im_names.append('110091.jpg')
-    #im_names.append('110094.jpg')
-    #im_names.append('110095.jpg')
-    #im_names.append('110096.jpg')
-    #im_names.append('110097.jpg')
-    #im_names.append('110100.jpg')
-    #im_names.append('110101.jpg')
-    #im_names.append('110102.jpg')
-    #im_names.append('110103.jpg')
-    #im_names.append('110104.jpg')
-    #im_names.append('110105.jpg')
-    #im_names.append('110106.jpg')
-    #im_names.append('110110.jpg')
-    #im_names.append('110112.jpg')
-    #im_names.append('110113.jpg')
-    #im_names.append('110114.jpg')
-    #im_names.append('110115.jpg')
-    #im_names.append('110116.jpg')
-    #im_names.append('110117.jpg')
-    #im_names.append('110118.jpg')
-    #im_names.append('110119.jpg')
-    #im_names.append('110120.jpg')
-    #im_names.append('110122.jpg')
-    #im_names.append('110125.jpg')
-    #im_names.append('110128.jpg')
-    #im_names.append('110130.jpg')
-    for i in range(0,19):
-        im_names.append('img_000000000_Default_%03d.tif'%i)
+    print('opening file: ',imgstack)
+    im_stack = tifffile.TiffFile(imgstack).asarray()
+    im_path =  os.path.dirname(os.path.abspath(imgstack))
+    out_path = imgstack[:-4]
+    os.makedirs(out_path, exist_ok=True)
+    print('shape of stack: ',im_stack.shape)
+    for im_ref in range(0,im_stack.shape[0]):
+        im_gray = im_stack[im_ref,:,:]
+        im = np.zeros((*im_gray.shape,3))
+        im[:,:,0] = im_gray
+        im[:,:,1] = im_gray
+        im[:,:,2] = im_gray
+        #im = im.astype(np.uint8)
+        im = im.astype(np.float32)
+        
+        im = im /np.max(im)
+        im = im*255.0
+        im = im.astype(np.uint8)
+        im = im[::2,::2]
+        print(np.max(im),np.min(im))
+        demo(sess, net, im , im_ref,out_path)
+    #plt.show()
+
+def parse_args():
+    """Parse input arguments."""
+    parser = argparse.ArgumentParser(description='Tensorflow Faster R-CNN demo')
+    parser.add_argument('--net', dest='demo_net', help='Network to use [vgg16 res101]',
+                        choices=NETS.keys(), default='res101')
+    parser.add_argument('--imgstack', dest='imgstack', help='Trained dataset [pascal_voc pascal_voc_0712]',
+                        )
+    args = parser.parse_args()
+
+    return args
+
+
+if __name__ == '__main__':
+    args = parse_args()
+
+    # model path
+    demonet = args.demo_net
+    imgstack = args.imgstack
+    #tfmodel = os.path.join('output', demonet, DATASETS[dataset][0], 'default', NETS[demonet][0])
+    #tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',demonet ,'default', NETS[demonet][0])
+    tfmodel = "/Users/dwaithe/Documents/collaborators/WaitheD/micro_vision/tracking/"+NETS[demonet][0]
+    print('does this work',tfmodel)
+    if not os.path.isfile(tfmodel + '.meta'):
+        print(tfmodel)
+        raise IOError(('{:s} not found.\nDid you download the proper networks from '
+                       'our server and place them properly?').format(tfmodel + '.meta'))
+
+    
+
+    
+    #im_names = []
+    
+    #for i in range(0,19):
+    #    im_names.append('img_000000000_Default_%03d.tif'%i)
  
 
-    for im_name in im_names:
-        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        print('Demo for data/demo/movieframes/{}'.format(im_name))
-        demo(sess, net, im_name)
+    #for im_name in im_names:
+    #    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    #    print('Demo for data/demo/movieframes/{}'.format(im_name))
+    #    demo(sess, net, im_name)
+    start_import(imgstack,demonet)
 
-    plt.show()
+    
+
+
+
