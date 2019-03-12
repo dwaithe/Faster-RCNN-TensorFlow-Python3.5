@@ -129,7 +129,7 @@ FLAGS2["CLASSES"] = ['__background__']
 
 #Additional classes
 
-FLAGS2["extra_CLASSES"] = False
+FLAGS2["extra_CLASSES"] = True
 if FLAGS2["extra_CLASSES"] == False:
 
 
@@ -138,7 +138,7 @@ if FLAGS2["extra_CLASSES"] == False:
     FLAGS2["CLASSES"].append('cell - c127 dapi')
     FLAGS2["CLASSES"].append('cell - eukaryote dapi')
     FLAGS2["CLASSES"].append('cell - fibroblast nucleopore')
-    FLAGS2["CLASSES"].append('cell - hela peroxisome all')
+    FLAGS2["CLASSES"].append('cell - hek peroxisome all')
     
     
     FLAGS2["data_path_extras_neuroblastoma_phal_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'neuroblastoma_phal_class/2018'))

@@ -21,8 +21,9 @@ except ImportError:
   import pickle
 import os
 
-def get_training_roidb(imdb):
 
+
+def get_training_roidb(imdb):
 	"""Returns a roidb (Region of Interest database) for use in training."""
 	if True:
 		print('Appending horizontally-flipped training examples...')
@@ -42,6 +43,7 @@ def combined_roidb(imdb_names):
 	"""
 
 	def get_roidb(imdb_name):
+		print('imdb',imdb_name)
 		imdb = get_imdb(imdb_name)
 		print('Loaded dataset `{:s}` for training'.format(imdb.name))
 		imdb.set_proposal_method("gt")
@@ -267,4 +269,3 @@ if __name__ == '__main__':
 
 	train = Train(sys.argv[2])
 	train.train()
-
