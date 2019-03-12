@@ -88,27 +88,17 @@ NETS['MP6843phal_class_train_n120'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phal_class_train_n150'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 NETS['MP6843phal_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
+NETS['global'] =('glycophorinA_class_train_n80+nucleopore_class_train_n26+c127_dapi_class_train_n30+neuroblastoma_phal_class_train_n180+eukaryote_dapi_class_train_n40+peroxisome_full_class_train_n55/default/vgg16_faster_rcnn_iter_20000.ckpt',)
+NETS['fibroblast_nucleopore_class_train_n26'] = ('fibroblast_nucleopore_class_train_n26/default/vgg16_faster_rcnn_iter_20000.ckpt',)
 
-NETS['voc_2007_trainval+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_1+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_5+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_10+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_25+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['voc_2007_trainval_50+MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-
-NETS['MP6843phaldapi_class_train_n30'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['MP6843phaldapi_class_train_n50'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['MP6843phaldapi_class_train_n75'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['MP6843phaldapi_class_train_n100'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['MP6843phaldapi_class_train_n120'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['MP6843phaldapi_class_train_n150'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
-NETS['MP6843phaldapi_class_train_n180'] =('vgg16_faster_rcnn_iter_40000.ckpt',)
 
 DATASETS = {'pascal_voc': ('voc_2007_trainval',), 'pascal_voc_0712': ('voc_2007_trainval+voc_2012_trainval',), 'vgg16+test': ('voc_2007_val',)}
 DATASETS['dapiCell'] = ('c127dapi_class_test_n30',)
 DATASETS['nucleosomeCell'] = ('nucleosome_class_test_n30',)
 DATASETS['MP6843phalCell'] = ('MP6843phal_class_test_n30',)
 DATASETS['MP6843phaldapiCell'] = ('MP6843phaldapi_class_test_n30',)
+
+
 
 def vis_detections(im, class_name, dets, thresh=0.5):
     """Draw detected bounding boxes."""
@@ -147,7 +137,8 @@ def demo(sess, net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
 
     # Load the demo image
-    im_file = os.path.join(cfg.FLAGS2["data_dir"], 'demo', image_name)
+    im_file = os.path.join(cfg.FLAGS2["data_dir"],image_name)
+    print('file to be imported: ',im_file)
     im = cv2.imread(im_file)
 
     # Detect all object classes and regress object bounds
@@ -158,8 +149,8 @@ def demo(sess, net, image_name):
     print('Detection took {:.3f}s for {:d} object proposals'.format(timer.total_time, boxes.shape[0]))
 
     # Visualize detections for each class
-    CONF_THRESH = 0.1
-    NMS_THRESH = 1.0
+    CONF_THRESH = 0.6
+    NMS_THRESH = 0.6
     for cls_ind, cls in enumerate(cfg.FLAGS2["CLASSES"][1:]):
         cls_ind += 1  # because we skipped background
         cls_boxes = boxes[:, 4 * cls_ind:4 * (cls_ind + 1)]
@@ -190,8 +181,8 @@ if __name__ == '__main__':
     demonet = args.demo_net
     dataset = args.dataset
     #tfmodel = os.path.join('output', demonet, DATASETS[dataset][0], 'default', NETS[demonet][0])
-    #tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',demonet ,'default', NETS[demonet][0])
-    tfmodel = "/Users/dwaithe/Documents/collaborators/WaitheD/tracking/"+NETS[demonet][0]
+    tfmodel = os.path.join('/scratch','dwaithe','models' , 'default',NETS[demonet][0])
+    #tfmodel = "/Users/dwaithe/Documents/collaborators/WaitheD/tracking/"+NETS[demonet][0]
     print('does this work',tfmodel)
     if not os.path.isfile(tfmodel + '.meta'):
         print(tfmodel)
@@ -217,82 +208,16 @@ if __name__ == '__main__':
 
     print('Loaded network {:s}'.format(tfmodel))
     im_names = []
-    #im_names = ['010037.jpg','010038.jpg','010039.jpg','010040.jpg','010041.jpg','010057.jpg','010058.jpg','010117.jpg','010118.jpg','010119.jpg','010180.jpg','010181.jpg','010182.jpg']
-    #im_names.append('010158.jpg')
-    #im_names.append('010159.jpg')
-    #im_names.append('010160.jpg')
-    #im_names.append('010161.jpg')
-    #im_names.append('010162.jpg')
-    #im_names.append('010163.jpg')
-    #im_names.append('010164.jpg')
-    #im_names.append('010165.jpg')
-    #im_names.append('010166.jpg')
-    #im_names.append('010167.jpg')
-    #im_names.append('010168.jpg')
-    #im_names.append('010169.jpg')
-    #im_names.append('010170.jpg')
-    #im_names.append('010171.jpg')
-    #im_names.append('010172.jpg')
-    #im_names.append('010173.jpg')
-    #im_names.append('010174.jpg')
-    #im_names.append('010175.jpg')
-    #im_names.append('010176.jpg')
-    #im_names.append('010177.jpg')
-    #im_names.append('010178.jpg')
-    #im_names.append('010179.jpg')
-    #im_names.append('010180.jpg')
-    #im_names.append('010181.jpg')
-    #im_names.append('010182.jpg')
-    #im_names.append('010183.jpg')
-    #im_names.append('010184.jpg')
-    #im_names.append('010185.jpg')
-    #im_names.append('010186.jpg')
-    #im_names.append('010187.jpg')
-    #im_names.append('010188.jpg')
-    #im_names.append('010189.jpg')
-    #im_names.append('010039.jpg')
-    #im_names.append('010040.jpg')
-    #im_names.append('110096.jpg')
-    #im_names.append('110097.jpg')
-    #im_names.append('110098.jpg')
-    #im_names.append('110099.jpg')
-    #im_names.append('110100.jpg')
-    #im_names.append('110084.jpg')
-    #im_names.append('110085.jpg')
-    #im_names.append('110086.jpg')
-    #im_names.append('110090.jpg')
-    #im_names.append('110091.jpg')
-    #im_names.append('110094.jpg')
-    #im_names.append('110095.jpg')
-    #im_names.append('110096.jpg')
-    #im_names.append('110097.jpg')
-    #im_names.append('110100.jpg')
-    #im_names.append('110101.jpg')
-    #im_names.append('110102.jpg')
-    #im_names.append('110103.jpg')
-    #im_names.append('110104.jpg')
-    #im_names.append('110105.jpg')
-    #im_names.append('110106.jpg')
-    #im_names.append('110110.jpg')
-    #im_names.append('110112.jpg')
-    #im_names.append('110113.jpg')
-    #im_names.append('110114.jpg')
-    #im_names.append('110115.jpg')
-    #im_names.append('110116.jpg')
-    #im_names.append('110117.jpg')
-    #im_names.append('110118.jpg')
-    #im_names.append('110119.jpg')
-    #im_names.append('110120.jpg')
-    #im_names.append('110122.jpg')
-    #im_names.append('110125.jpg')
-    #im_names.append('110128.jpg')
-    #im_names.append('110130.jpg')
-    im_names.append('movie_frames/C2-Faster-RCNN-TensorFlow-Python3.5-master-NUCLEOPHORE.ome0009.jpg')
+    
+    im_names.append('test/img_000000000_Default_001.png')
+    im_names.append('test/img_000000000_Default_002.png')
+    im_names.append('test/img_000000000_Default_003.png')
+    im_names.append('test/max1_MMStack_Pos0.png')
  
 
     for im_name in im_names:
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        print('Demo for data/demo/{}'.format(im_name))
+        print('Demo for {}'.format(im_name))
         demo(sess, net, im_name)
 
     plt.show()
