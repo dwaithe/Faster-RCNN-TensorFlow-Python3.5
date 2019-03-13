@@ -121,14 +121,24 @@ FLAGS2["data_dir"] = osp.abspath(osp.join(FLAGS2["root_dir"], 'data'))
 
 FLAGS2["save_dir"] = "/scratch/dwaithe/models/"
 #FLAGS2["save_dir"] = "/Users/dwaithe/Documents/collaborators/WaitheD/Faster-RCNN-TensorFlow-Python3.5/default/"
-
+FLAGS2['classes_file'] = "classes_cells.txt"
 #####################
 #Class parameters   #
 #####################
 FLAGS2["CLASSES"] = ['__background__']
 
-#Additional classes
+f = open( osp.abspath(osp.join(FLAGS2["root_dir"],FLAGS2['classes_file'])), "r")
+lines = f.readlines()
+for line in lines:
+    parts = line.split(',')
+    class_name = parts[0].split('\'')[1]
+    class_dir_path = parts[1].strip('\n').split('\'')[1]
+    FLAGS2["CLASSES"].append(class_name)
+    FLAGS2["data_path_extras_" + str(class_dir_path).split('/')[0]] = osp.abspath(osp.join(FLAGS2["data_dir"], class_dir_path))
 
+#Additional classes
+"""data_path_extras_peroxisome_all_class
+data_path_extras_hek_peroxisome_all_class
 FLAGS2["extra_CLASSES"] = True
 if FLAGS2["extra_CLASSES"] == False:
 
@@ -154,7 +164,7 @@ if FLAGS2["extra_CLASSES"] == True:
 
     FLAGS2["data_path_extras_neuroblastoma_phal_dapi_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'neuroblastoma_phal_dapi_class/2018'))
     FLAGS2["data_path_extras_erythroblast_dapi_glycophorinA_class"] = osp.abspath(osp.join(FLAGS2["data_dir"], 'erythroblast_dapi_glycophorinA_class/2018'))
-    
+  """  
 # Option to set if max-pooling is appended after crop_and_resize. 
 # if true, the region will be resized to a square of 2xPOOLING_SIZE, 
 # then 2x2 max-pooling is applied; otherwise the region will be directly

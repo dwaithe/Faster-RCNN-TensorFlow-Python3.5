@@ -15,7 +15,9 @@ from lib.datasets.pascal_voc import pascal_voc
 from lib.datasets.coco import coco
 
 from lib.datasets.custom_classes import custom_classes
-
+import lib.config.config as cfg
+import os
+import os.path as osp
 
 import numpy as np
 
@@ -37,53 +39,32 @@ for year in ['2015']:
     name = 'coco_{}_{}'.format(year, split)
     __sets[name] = (lambda split=split, year=year: coco(split, year))
 
-# Set up dominic 2017
-#for year in ['2015']:
- # for split in ['test', 'test-dev']:
-    #name = 'coco_{}_{}'.format(year, split)
-for split in ['val', 'trainval_n10','trainval_n20','trainval_n30','train_n10','train_n20','train_n30','test_n30']:
-  name = 'c127_dapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_c127_dapi_class','c127_dapi_class'))
-for split in ['train_n40','test_n40']:
-  name = 'eukaryote_dapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_eukaryote_dapi_class','eukaryote_dapi_class'))
-for split in ['train_n26','test_n20']:
-  name = 'fibroblast_nucleopore_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_fibroblast_nucleopore_class','fibroblast_nucleopore_class'))
-for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180']:
-  name = 'neuroblastoma_phal_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_neuroblastoma_phal_class','neuroblastoma_phal_class'))
-
-for split in ['test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180']:
-  name = 'neuroblastoma_phal_dapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_neuroblastoma_phal_dapi_class','neuroblastoma_phal_dapi_class'))
-
-
-
-for split in ['train_n80','test_n80']:
-  name = 'erythroblast_dapi_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_erythroblast_dapi_class','erythroblast_dapi_class'))
-
-for split in ['train_n80','test_n80']:
-  name = 'erythroblast_dapi_glycophorinA_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_erythroblast_dapi_glycophorinA_class','erythroblast_dapi_glycophorinA_class'))
-
-
-for split in ['train_n10','train_n30','train_n55','test_n55','test_n30']:
-  name = 'hek_peroxisome_all_class_{}'.format(split)
-  __sets[name] = (lambda split=split, year='2007': custom_classes(split, '2017','data_path_extras_hek_peroxisome_all_class','hek_peroxisome_all_class'))
-
-
 for year in ['2007', '2012']:
   for split in ['trainval_1','trainval_5','trainval_10','trainval_25','trainval_50','trainval_75']:
     name = 'voc_{}_{}'.format(year, split)
     __sets[name] = (lambda split=split, year=year: pascal_voc(split, year))
 
 
+f = open( osp.abspath(osp.join(cfg.FLAGS2["root_dir"],cfg.FLAGS2['classes_file'])), "r")
+lines = f.readlines()
+for line in lines:
+    parts = line.split(',')
+    class_name = parts[0].split('\'')[1]
+    class_dir_name = parts[1].strip('\n').split('\'')[1].split('/')[0]
+    for i in range(2,parts.__len__()):
+      split = parts[i].strip('\n').split('\'')[1]
+      name = class_dir_name+'_{}'.format(split)
+      __sets[name] = (lambda split=split, year='2017': custom_classes(split, year,'data_path_extras_'+class_dir_name,class_dir_name))
+
+    
+
+
+
+
 
 def get_imdb(name):
   """Get an imdb (image database) by name."""
-  print (__sets)
+  
   if name not in __sets:
     raise KeyError('Unknown dataset: {}'.format(name))
   return __sets[name]()
