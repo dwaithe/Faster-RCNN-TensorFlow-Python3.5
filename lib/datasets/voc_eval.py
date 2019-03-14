@@ -100,10 +100,7 @@ def voc_eval(detpath,
     # assumes imagesetfile is a text file with each line an image name
     # cachedir caches the annotations in a pickle file
 
-    print('detpath',detpath)
-    print('detpath',annopath)
-    
-    #first load gt
+
     if not os.path.isdir(cachedir):
         os.mkdir(cachedir)
     cachefile = os.path.join(cachedir, 'annots.pkl')
@@ -111,6 +108,7 @@ def voc_eval(detpath,
     with open(imagesetfile, 'r') as f:
         lines = f.readlines()
     imagenames = [x.strip() for x in lines]
+
 
     #if not os.path.isfile(cachefile):
     # load annots
@@ -126,18 +124,13 @@ def voc_eval(detpath,
     print('Saving cached annotations to {:s}'.format(cachefile))
     with open(cachefile, 'wb') as f:
         pickle.dump(recs, f)
-    #else:
-        # load
-    #    with open(cachefile, 'rb') as f:
-    #        try:
-    #            recs = pickle.load(f)
-    #        except:
-    #            recs = pickle.load(f, encoding='bytes')
+ 
 
     # extract gt objects for this class
     class_recs = {}
     npos = 0
     for imagename in imagenames:
+
         #print('classname',classname,recs[imagename][0]['name'],classname==recs[imagename]['name'])
 
         R = [obj for obj in recs[imagename] if obj['name'].lower() == classname.lower()]
@@ -153,7 +146,6 @@ def voc_eval(detpath,
     # read dets
     detfile = detpath.format(classname)
 
-    print('detfile2',detfile)
     with open(detfile, 'r') as f:
         lines = f.readlines()
 

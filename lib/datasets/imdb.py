@@ -106,14 +106,17 @@ class imdb(object):
     def _get_widths(self):
         return [PIL.Image.open(self.image_path_at(i)).size[0]
                 for i in range(self.num_images)]
+
     def _get_heights(self):
         return [PIL.Image.open(self.image_path_at(i)).size[1]
                 for i in range(self.num_images)]
+
 
     def append_flipped_images(self):
         num_images = self.num_images
         widths = self._get_widths()
         heights = self._get_heights()
+
         for i in range(num_images):
             boxes = self.roidb[i]['boxes'].copy()
             oldx1 = boxes[:, 0].copy()
@@ -160,6 +163,7 @@ class imdb(object):
             self._image_index = self._image_index * 4
         else:
             self._image_index = self._image_index * 2
+
 
     def evaluate_recall(self, candidate_boxes=None, thresholds=None,
                         area='all', limit=None):
@@ -278,6 +282,7 @@ class imdb(object):
                 'flippedh': False,
                 'flippedv': False,
                 'flippedb': False,
+
                 'seg_areas': np.zeros((num_boxes,), dtype=np.float32),
             })
         return roidb

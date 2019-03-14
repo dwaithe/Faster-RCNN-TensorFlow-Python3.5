@@ -3,7 +3,9 @@ import time
 import numpy as np
 import tensorflow as tf
 from tensorflow.python import pywrap_tensorflow
+
 import os
+
 import lib.config.config as cfg
 from lib.datasets import roidb as rdl_roidb
 from lib.datasets.factory import get_imdb
@@ -18,6 +20,8 @@ try:
 except ImportError:
   import pickle
 import os
+
+
 
 def get_training_roidb(imdb):
 	"""Returns a roidb (Region of Interest database) for use in training."""
@@ -39,6 +43,7 @@ def combined_roidb(imdb_names):
 	"""
 
 	def get_roidb(imdb_name):
+		
 		imdb = get_imdb(imdb_name)
 		print('Loaded dataset `{:s}` for training'.format(imdb.name))
 		imdb.set_proposal_method("gt")
