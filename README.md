@@ -19,7 +19,7 @@ Here are list of the changes made, though greater detail is to be found using gi
 Running this code yourself. What needs to be done.
 
 ### Create your own dataset. 
-First of all you need some data. Either download the data used for this project or create your own.
+First of all you need some data. Either download the data used for this project (https://zenodo.org/record/2593704#.XIqEwROwnJw) or create your own.
 
 If you have your own data, this needs to placed in its own directory in the root data directory(e.g. /data). Within the new folder (e.g. data/erythroblast_dapi_class), you need a folder with the year (e.g. 2018) and then within this directory a few additional folders:
 - 'JPEGImages' - jpg versions of your image files.
