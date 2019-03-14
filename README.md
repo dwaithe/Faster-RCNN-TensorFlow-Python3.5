@@ -22,10 +22,10 @@ Running this code yourself. What needs to be done.
 First of all you need some data. Either download the data used for this project or create your own.
 
 If you have your own data, this needs to placed in its own directory in the root data directory(e.g. /data). Within the new folder (e.g. data/erythroblast_dapi_class), you need a folder with the year (e.g. 2018) and then within this directory a few additional folders:
-'JPEGImages' - jpg versions of your image files.
-'Annotations' - with Annotations for each image file. The Annotations follow the VOC format. See here for more details.
-'ImageSets/Main' - This folder contains a subdirectory called 'Main' (e.g. ImageSets/Main). Within this folder you place files which reference images for training, testing and validation (e.g. test_n180.txt). Each file contains the image names used for an operation (e.g. 013000), with one image reference per line.
-'results/Main' - This is folder for the output of results and contains a subdiretory called 'Main'.
+- 'JPEGImages' - jpg versions of your image files.
+- 'Annotations' - with Annotations for each image file. The Annotations follow the VOC format. See here for more details.
+- 'ImageSets/Main' - This folder contains a subdirectory called 'Main' (e.g. ImageSets/Main). Within this folder you place files which reference images for training, testing and validation (e.g. test_n180.txt). Each file contains the image names used for an operation (e.g. 013000), with one image reference per line.
+- 'results/Main' - This is folder for the output of results and contains a subdiretory called 'Main'.
 
 ### Planning your first experiment. 
 
@@ -36,12 +36,12 @@ This file tells the algorithm which classes to condition the output layers of Fa
 Within each file write out each class name, followed by a comma and then the directory relative to the specified data dir. After another comma include the imagesets used for this file with a comma separating each file. This should match the files located in the 'ImageSets' folder described above in the 'Create your own dataset section'.
  with a new line for each class:
 e.g.
-'cell - neuroblastoma phalloidin', 'neuroblastoma_phal_class/2018','test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180'
-'cell - erythroblast dapi', 'erythroblast_dapi_class/2018','train_n80','test_n80'
-'cell - c127 dapi','c127_dapi_class/2018', 'train_n10','train_n20','train_n30','test_n30'
-'cell - eukaryote dapi','eukaryote_dapi_class/2018', 'train_n40','test_n40'
-'cell - fibroblast nucleopore','fibroblast_nucleopore_class/2018','train_n26','test_n20'
-'cell - hek peroxisome all','hek_peroxisome_all_class/2018','train_n10','train_n30','train_n55','test_n55','test_n30'
+- 'cell - neuroblastoma phalloidin', 'neuroblastoma_phal_class/2018','test_n30','test_n50','test_n75','test_n100','test_n120','test_n150','test_n180','train_n30','train_n50','train_n75','train_n100','train_n120','train_n150','train_n180'
+- 'cell - erythroblast dapi', 'erythroblast_dapi_class/2018','train_n80','test_n80'
+- 'cell - c127 dapi','c127_dapi_class/2018', 'train_n10','train_n20','train_n30','test_n30'
+- 'cell - eukaryote dapi','eukaryote_dapi_class/2018', 'train_n40','test_n40'
+-'cell - fibroblast nucleopore','fibroblast_nucleopore_class/2018','train_n26','test_n20'
+- 'cell - hek peroxisome all','hek_peroxisome_all_class/2018','train_n10','train_n30','train_n55','test_n55','test_n30'
 
 ### Initalisation of training.
 
