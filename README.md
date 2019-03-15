@@ -50,10 +50,12 @@ e.g.
 
 From the command line:
 python train.py [GPU EXPERIMENT FLIP]
+
 e.g. python train.py 0 hek_peroxisome_all_class_train_n10 1
-GPU - which GPU to use (e.g. 0 or 1 or -1 for cpu)
-EXPERIMENT - the dataset to train on, class followed by imageset. To train on multiple dataset simultaneously seperate each with a '+', e.g. (glycophorinA_class_train_n80+nucleopore_class_train_n26+c127_dapi_class_train_n30)
-FLIP - whether to include vertical flipping during the data import and augmentation phase.
+- GPU - which GPU to use (e.g. 0 or 1 or -1 for cpu)
+- EXPERIMENT - the dataset to train on, class followed by imageset. To train on multiple dataset simultaneously seperate each with a '+', 
+e.g. (glycophorinA_class_train_n80+nucleopore_class_train_n26+c127_dapi_class_train_n30)
+- FLIP - whether to include vertical flipping during the data import and augmentation phase.
 
 
 # tf-faster-rcnn
