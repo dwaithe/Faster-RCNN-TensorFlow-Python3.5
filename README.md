@@ -1,4 +1,7 @@
 # Faster-RCNN used for the AMCA (Automous Microscope Control Environment)
+
+Tensorflow Faster R-CNN for Windows, mac OS X and linux by using Python 3.5. This repository was folked from [here](https://github.com/dBeker/Faster-RCNN-TensorFlow-Python3.5) and adapted to work in Linux and on mac in addition to Windows. This was achieved by removing some of the compiler dependent code. 
+
 For the project, to make it compatible with cellular imaging data created for the project, I made some changes.
 The training is peformed by transfer learning, using VGG16 trained on ImageNet. Changes were made to several files to make it possible to train the network on some new classes which are not in the conventional databases used for object detection.
 Here are list of the changes made, though greater detail is to be found using github commit history.
@@ -11,8 +14,8 @@ Here are list of the changes made, though greater detail is to be found using gi
 - to /train.py Made a number of changes to reflect the need for custom classes
 - I added /lib/datasets/custom_classes.py This is a altered copy of pascal_voc whereby I have made changes to support cell classes.
 
-
-
+## Installation
+Please see tf-faster-rcnn section below which is original text from dBeker README.
 
 ## Training your own model.
 
